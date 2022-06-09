@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".MainActivity">
+
+    <dylan.kwon.shapecontainer.ShapeContainer
+        android:id="@+id/image_container"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:cornerRadius="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:useClip="true">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img" />
+
+    </dylan.kwon.shapecontainer.ShapeContainer>
+
+    <dylan.kwon.shapecontainer.ShapeContainer
+        android:id="@+id/first"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:focusable="true"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toStartOf="@id/second"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_container"
+        app:strokeColor="@color/blue"
+        app:strokeWidth="5dp" />
+
+    <dylan.kwon.shapecontainer.ShapeContainer
+        android:id="@+id/second"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="20dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cornerDisableRadius="100dp"
+        app:cornerRadius="8dp"
+        app:enabled="true"
+        app:layout_constraintEnd_toStartOf="@id/third"
+        app:layout_constraintStart_toEndOf="@id/first"
+        app:layout_constraintTop_toTopOf="@id/first"
+        app:solidColor="@color/white"
+        app:solidDisabledColor="@color/black"
+        app:strokeColor="@color/black"
+        app:strokeDashGap="5dp"
+        app:strokeDashWidth="5dp"
+        app:strokeDisabledColor="@color/red"
+        app:strokeDisabledDashGap="0dp"
+        app:strokeDisabledDashWidth="0dp"
+        app:strokeDisabledWidth="5dp"
+        app:strokeWidth="5dp"
+        app:useClip="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Text"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </dylan.kwon.shapecontainer.ShapeContainer>
+
+    <dylan.kwon.shapecontainer.ShapeContainer
+        android:id="@+id/third"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="20dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cornerDisableRadius="100dp"
+        app:cornerRadius="8dp"
+        app:enabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/second"
+        app:layout_constraintTop_toTopOf="@id/first"
+        app:strokeColor="@color/black"
+        app:strokeDashGap="5dp"
+        app:strokeDashWidth="5dp"
+        app:strokeDisabledColor="@color/red"
+        app:strokeDisabledDashGap="0dp"
+        app:strokeDisabledDashWidth="0dp"
+        app:strokeDisabledWidth="5dp"
+        app:strokeWidth="5dp"
+        app:useClip="true">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_baseline_done_outline_24" />
+
+    </dylan.kwon.shapecontainer.ShapeContainer>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
