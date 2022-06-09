@@ -371,4 +371,12 @@ open class ShapeContainer @JvmOverloads constructor(
         else -> bottomRightDisabledRadius
     }
 
+    /**
+     * When the enabled state is changed, a new drawable is created.
+     */
+    override fun setEnabled(enabled: Boolean) {
+        super.setEnabled(enabled)
+        createShape()
+    }
+
 }
