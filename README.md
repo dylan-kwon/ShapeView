@@ -36,25 +36,15 @@ dependencies {
     android:focusable="true"
 
     app:solidColor="@color/white"
-    app:solidDisabledColor="@color/black"
-
     app:strokeColor="@color/black"
-    app:strokeDisabledColor="@color/red"
-
     app:strokeWidth="5dp"
-    app:strokeDisabledWidth="5dp"
-
     app:strokeDashWidth="5dp"
-    app:strokeDisabledDashWidth="0dp"
-
     app:strokeDashGap="5dp"
-    app:strokeDisabledDashGap="0dp"
 
     app:cornerRadius="8dp"
-    app:cornerDisableRadius="100dp"
 
     app:rippleColor="@color/red"
-
+    
     app:enabled="true"
     app:useClip="true" />
 ```
