@@ -62,17 +62,11 @@ dependencies {
 | name  | description  |
 |---|---|
 | app:solidColor  | Background color in enabled.  |
-| app:solidDisabledColor  | Background color in disabled.  |
 | app:strokeColor  | Stroke color in enabled.  |
-| app:strokeDisabledColor  | Stroke color in disabled.  |
 | app:strokeWidth  | Stroke width in enabled.  |
-| app:strokeDisabledWidth  | Stroke width in disabled.  |
 | app:strokeDashWidth  | Stroke dash width in enabled.  |
-| app:strokeDisabledDashWidth  | Stroke dash width in disabled.  |
 | app:strokeDashGap  | Stroke dash gap in enabled.  |
-| app:strokeDisabledDashGap  | Stroke dash gap in disabled.  |
 | app:cornerRadius  | Radius in enabled.  |
-| app:cornerDisableRadius  | Radius in disabled.  |
 | app:rippleColor  | Container ripple color.  |
 | app:enabled  | container activation status.  |
 | app:useClip  | Whether to cut corner radius.  |

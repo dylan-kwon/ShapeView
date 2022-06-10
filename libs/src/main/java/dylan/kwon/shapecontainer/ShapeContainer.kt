@@ -3,7 +3,6 @@ package dylan.kwon.shapecontainer
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Path
 import android.graphics.RectF
 import android.graphics.drawable.Drawable
@@ -25,69 +24,106 @@ open class ShapeContainer @JvmOverloads constructor(
 
 ) : FrameLayout(context, attrs, defStyleAttr, defStyleRes) {
 
+    private var isInitialized = false
+
     /**
      * Background color.
      */
-    var solidEnabledColor: Int = Color.WHITE  // enabled.
-    var solidDisabledColor: Int = Color.WHITE // disabled.
+    var shapeColor: ColorStateList? = null
+        set(value) {
+            field = value
+            invalidateShape()
+        }
 
     /**
      * Ripple color.
      */
-    var rippleColor: Int = Color.TRANSPARENT // enabled.
+    var rippleColor: ColorStateList? = null
+        set(value) {
+            field = value
+            invalidateShape()
+        }
 
     /**
      * Stroke width.
      */
-    var strokeEnabledWidth: Float = 0f  // enabled.
-    var strokeDisabledWidth: Float = 0f // disabled.
+    var strokeWidth: Float = 0f
+        set(value) {
+            field = value
+            invalidateShape()
+        }
 
     /**
      * Stroke dash width.
      */
-    var strokeEnabledDashWidth: Float = 0f  // enabled.
-    var strokeDisabledDashWidth: Float = 0f // disabled.
+    var strokeDashWidth: Float = 0f
+        set(value) {
+            field = value
+            invalidateShape()
+        }
 
     /**
      * Stroke dash gap.
      */
-    var strokeEnabledDashGap: Float = 0f  // enabled.
-    var strokeDisabledDashGap: Float = 0f // disabled.
+    var strokeDashGap: Float = 0f
+        set(value) {
+            field = value
+            invalidateShape()
+        }
 
     /**
      * Stroke color.
      */
-    var strokeEnabledColor: Int = Color.TRANSPARENT  // enabled.
-    var strokeDisabledColor: Int = Color.TRANSPARENT // disabled.
+    var strokeColor: ColorStateList? = null
+        set(value) {
+            field = value
+            invalidateShape()
+        }
 
     /**
      * top-left radius.
      */
-    var topLeftEnabledRadius: Float = 0f  // enabled.
-    var topLeftDisabledRadius: Float = 0f // disabled.
+    var topLeftRadius: Float = 0f
+        set(value) {
+            field = value
+            invalidateShape()
+        }
 
     /**
      * top-right radius.
      */
-    var topRightEnabledRadius: Float = 0f  // enabled.
-    var topRightDisabledRadius: Float = 0f // disabled.
+    var topRightRadius: Float = 0f
+        set(value) {
+            field = value
+            invalidateShape()
+        }
 
     /**
      * bottom-left radius.
      */
-    var bottomLeftEnabledRadius: Float = 0f  // enabled.
-    var bottomLeftDisabledRadius: Float = 0f // disabled.
+    var bottomLeftRadius: Float = 0f
+        set(value) {
+            field = value
+            invalidateShape()
+        }
 
     /**
      * bottom-right radius.
      */
-    var bottomRightEnabledRadius: Float = 0f  // enabled.
-    var bottomRightDisabledRadius: Float = 0f // disabled.
+    var bottomRightRadius: Float = 0f
+        set(value) {
+            field = value
+            invalidateShape()
+        }
 
     /**
      * If this value is true, the edges are clipped by the radius.
      */
     var useClip: Boolean = false
+        set(value) {
+            field = value
+            invalidateShape()
+        }
 
     /**
      * initialize.
@@ -102,74 +138,46 @@ open class ShapeContainer @JvmOverloads constructor(
             if (cornerEnabledRadius > -1) {
                 setCornerEnabledRadius(cornerEnabledRadius)
             } else {
-                topLeftEnabledRadius = it.getDimension(
+                topLeftRadius = it.getDimension(
                     R.styleable.ShapeContainer_topLeftRadius, 0f
                 )
-                topRightEnabledRadius = it.getDimension(
+                topRightRadius = it.getDimension(
                     R.styleable.ShapeContainer_topRightRadius, 0f
                 )
-                bottomLeftEnabledRadius = it.getDimension(
+                bottomLeftRadius = it.getDimension(
                     R.styleable.ShapeContainer_bottomLeftRadius, 0f
                 )
-                bottomRightEnabledRadius = it.getDimension(
+                bottomRightRadius = it.getDimension(
                     R.styleable.ShapeContainer_bottomRightRadius, 0f
                 )
             }
-            val cornerDisabledRadius = it.getDimension(
-                R.styleable.ShapeContainer_cornerDisableRadius, cornerEnabledRadius
+            shapeColor = it.getColorStateList(
+                R.styleable.ShapeContainer_solidColor
             )
-            if (cornerDisabledRadius > -1) {
-                setCornerDisabledRadius(cornerDisabledRadius)
-            } else {
-                topLeftDisabledRadius = it.getDimension(
-                    R.styleable.ShapeContainer_topLeftDisableRadius, topLeftEnabledRadius
-                )
-                topRightDisabledRadius = it.getDimension(
-                    R.styleable.ShapeContainer_topRightDisableRadius, topRightEnabledRadius
-                )
-                bottomLeftDisabledRadius = it.getDimension(
-                    R.styleable.ShapeContainer_bottomLeftDisableRadius, bottomLeftEnabledRadius
-                )
-                bottomRightDisabledRadius = it.getDimension(
-                    R.styleable.ShapeContainer_bottomRightDisableRadius, bottomRightEnabledRadius
-                )
-            }
-            solidEnabledColor = it.getColor(
-                R.styleable.ShapeContainer_solidColor, Color.WHITE
-            )
-            solidDisabledColor = it.getColor(
-                R.styleable.ShapeContainer_solidDisabledColor, solidEnabledColor
-            )
-            rippleColor = it.getColor(
+            rippleColor = it.getColorStateList(
                 R.styleable.ShapeContainer_rippleColor,
-                MaterialColors.getColor(
-                    this,
-                    com.google.android.material.R.attr.colorControlHighlight
+            ) ?: ColorStateList(
+                arrayOf(
+                    intArrayOf()
+                ),
+                intArrayOf(
+                    MaterialColors.getColor(
+                        this,
+                        com.google.android.material.R.attr.colorControlHighlight
+                    )
                 )
             )
-            strokeEnabledWidth = it.getDimension(
+            strokeWidth = it.getDimension(
                 R.styleable.ShapeContainer_strokeWidth, 0f
             )
-            strokeDisabledWidth = it.getDimension(
-                R.styleable.ShapeContainer_strokeDisabledWidth, strokeEnabledWidth
-            )
-            strokeEnabledDashWidth = it.getDimension(
+            strokeDashWidth = it.getDimension(
                 R.styleable.ShapeContainer_strokeDashWidth, 0f
             )
-            strokeDisabledDashWidth = it.getDimension(
-                R.styleable.ShapeContainer_strokeDisabledDashWidth, strokeEnabledDashWidth
-            )
-            strokeEnabledDashGap = it.getDimension(
+            strokeDashGap = it.getDimension(
                 R.styleable.ShapeContainer_strokeDashGap, 0f
             )
-            strokeDisabledDashGap = it.getDimension(
-                R.styleable.ShapeContainer_strokeDisabledDashGap, strokeEnabledDashGap
-            )
-            strokeEnabledColor = it.getColor(
-                R.styleable.ShapeContainer_strokeColor, Color.WHITE
-            )
-            strokeDisabledColor = it.getColor(
-                R.styleable.ShapeContainer_strokeDisabledColor, strokeEnabledColor
+            strokeColor = it.getColorStateList(
+                R.styleable.ShapeContainer_strokeColor
             )
             isEnabled = it.getBoolean(
                 R.styleable.ShapeContainer_enabled, true
@@ -178,7 +186,9 @@ open class ShapeContainer @JvmOverloads constructor(
                 R.styleable.ShapeContainer_useClip, false
             )
         }
-        createShape()
+        isInitialized = true
+
+        invalidateShape()
     }
 
     /**
@@ -208,26 +218,19 @@ open class ShapeContainer @JvmOverloads constructor(
      * Apply radius to all enabled corners.
      */
     fun setCornerEnabledRadius(radius: Float) {
-        topLeftEnabledRadius = radius
-        topRightEnabledRadius = radius
-        bottomLeftEnabledRadius = radius
-        bottomRightEnabledRadius = radius
-    }
-
-    /**
-     * Apply radius to all disabled corners.
-     */
-    fun setCornerDisabledRadius(radius: Float) {
-        topLeftDisabledRadius = radius
-        topRightDisabledRadius = radius
-        bottomLeftDisabledRadius = radius
-        bottomRightDisabledRadius = radius
+        topLeftRadius = radius
+        topRightRadius = radius
+        bottomLeftRadius = radius
+        bottomRightRadius = radius
     }
 
     /**
      * Create and apply the background and foreground to be used in ShapeContainer.
      */
-    private fun createShape() {
+    private fun invalidateShape() {
+        if (!isInitialized) {
+            return
+        }
         background = createBackground()
         foreground = createForeground(background)
     }
@@ -237,146 +240,46 @@ open class ShapeContainer @JvmOverloads constructor(
      */
     private fun createBackground(): GradientDrawable = GradientDrawable().apply {
         this.shape = GradientDrawable.RECTANGLE
-        this.color = createSolidColor()
+        this.color = shapeColor
         this.cornerRadii = createRadius()
         this.setStroke(
-            getStrokeWidth().toInt(),
-            createStrokeColor(),
-            getStrokeDashWidth(),
-            getStrokeDashGap()
+            strokeWidth.toInt(),
+            strokeColor,
+            strokeDashWidth,
+            strokeDashGap
         )
-    }
-
-    /**
-     * Returns the stroke width.
-     */
-    protected fun getStrokeWidth(): Float = when (isEnabled) {
-        true -> strokeEnabledWidth
-        else -> strokeDisabledWidth
-    }
-
-    /**
-     * Returns the stroke dash width.
-     */
-    protected fun getStrokeDashWidth(): Float = when (isEnabled) {
-        true -> strokeEnabledDashWidth
-        else -> strokeDisabledDashWidth
-    }
-
-    /**
-     * Returns the stroke dash gap.
-     */
-    protected fun getStrokeDashGap(): Float = when (isEnabled) {
-        true -> strokeEnabledDashGap
-        else -> strokeDisabledDashGap
     }
 
     /**
      * Returns the foreground to use in the ShapeContainer.
      */
-    protected fun createForeground(mask: Drawable): RippleDrawable =
-        RippleDrawable(createRippleColor(), null, mask)
+    protected fun createForeground(mask: Drawable): RippleDrawable? =
+        when (val rippleColor = rippleColor) {
+            null -> null
+            else -> RippleDrawable(rippleColor, null, mask)
+        }
 
-    /**
-     * Returns the solid color.
-     */
-    protected fun createSolidColor(): ColorStateList = ColorStateList(
-        arrayOf(
-            intArrayOf(-android.R.attr.state_enabled),
-            intArrayOf()
-        ),
-        intArrayOf(
-            solidDisabledColor,
-            solidEnabledColor
-        )
-    )
-
-    /**
-     * Returns the stroke color.
-     */
-    protected fun createStrokeColor(): ColorStateList = ColorStateList(
-        arrayOf(
-            intArrayOf(-android.R.attr.state_enabled),
-            intArrayOf()
-        ),
-        intArrayOf(
-            strokeDisabledColor,
-            strokeEnabledColor
-        )
-    )
-
-    /**
-     * Returns the ripple color.
-     */
-    protected fun createRippleColor(): ColorStateList = ColorStateList(
-        arrayOf(
-            intArrayOf()
-        ),
-        intArrayOf(
-            this.rippleColor
-        )
-    )
 
     /**
      * Returns the radius.
      */
-    protected fun createRadius(): FloatArray {
-        val topLeftRadius = getTopLeftRadius()
-        val topRightRadius = getTopRightRadius()
-        val bottomLeftRadius = getBottomLeftRadius()
-        val bottomRightRadius = getBottomRightRadius()
-
-        return floatArrayOf(
-            topLeftRadius,
-            topLeftRadius,
-            topRightRadius,
-            topRightRadius,
-            bottomLeftRadius,
-            bottomLeftRadius,
-            bottomRightRadius,
-            bottomRightRadius
-        )
-
-    }
-
-    /**
-     * Returns the top-left radius.
-     */
-    protected fun getTopLeftRadius(): Float = when (isEnabled) {
-        true -> topLeftEnabledRadius
-        else -> topLeftDisabledRadius
-    }
-
-    /**
-     * Returns the top-right radius.
-     */
-    protected fun getTopRightRadius(): Float = when (isEnabled) {
-        true -> topRightEnabledRadius
-        else -> topRightDisabledRadius
-    }
-
-    /**
-     * Returns the bottom-left radius.
-     */
-    protected fun getBottomLeftRadius(): Float = when (isEnabled) {
-        true -> bottomLeftEnabledRadius
-        else -> bottomLeftDisabledRadius
-    }
-
-    /**
-     * Returns the bottom-right radius.
-     */
-    protected fun getBottomRightRadius(): Float = when (isEnabled) {
-        true -> bottomRightEnabledRadius
-        else -> bottomRightDisabledRadius
-    }
+    protected fun createRadius(): FloatArray = floatArrayOf(
+        topLeftRadius,
+        topLeftRadius,
+        topRightRadius,
+        topRightRadius,
+        bottomLeftRadius,
+        bottomLeftRadius,
+        bottomRightRadius,
+        bottomRightRadius
+    )
 
     /**
      * When the enabled state is changed, a new drawable is created.
      */
     override fun setEnabled(enabled: Boolean) {
         super.setEnabled(enabled)
-        createShape()
+        invalidateShape()
     }
 
 }
