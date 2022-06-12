@@ -7,7 +7,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "dylan.kwon.shapecontainer.sample"
+        applicationId "fundylan.kwon.shapeview.sample"
         minSdk 23
         targetSdk 32
         versionCode 1

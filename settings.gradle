@@ -12,6 +12,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "ShapeContainer"
+rootProject.name = "ShapeView"
 include ':sample'
 include ':libs'

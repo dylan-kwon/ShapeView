@@ -8,7 +8,7 @@
         android:padding="20dp"
         tools:context=".MainActivity">
 
-        <dylan.kwon.shapecontainer.ShapeContainer
+        <dylan.kwon.shapeview.ShapeContainer
             android:id="@+id/image_container"
             android:layout_width="match_parent"
             android:layout_height="200dp"
@@ -22,9 +22,9 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/img" />
 
-        </dylan.kwon.shapecontainer.ShapeContainer>
+        </dylan.kwon.shapeview.ShapeContainer>
 
-        <dylan.kwon.shapecontainer.ShapeContainer
+        <dylan.kwon.shapeview.ShapeContainer
             android:id="@+id/first"
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -37,7 +37,7 @@
             app:strokeColor="@color/blue"
             app:strokeWidth="5dp" />
 
-        <dylan.kwon.shapecontainer.ShapeContainer
+        <dylan.kwon.shapeview.ShapeContainer
             android:id="@+id/second"
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -66,9 +66,9 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-        </dylan.kwon.shapecontainer.ShapeContainer>
+        </dylan.kwon.shapeview.ShapeContainer>
 
-        <dylan.kwon.shapecontainer.ShapeContainer
+        <dylan.kwon.shapeview.ShapeContainer
             android:id="@+id/third"
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -93,7 +93,7 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_baseline_done_outline_24" />
 
-        </dylan.kwon.shapecontainer.ShapeContainer>
+        </dylan.kwon.shapeview.ShapeContainer>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

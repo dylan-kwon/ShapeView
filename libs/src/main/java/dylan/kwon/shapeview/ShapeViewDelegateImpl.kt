@@ -1,4 +1,4 @@
-package dylan.kwon.shapecontainer
+package dylan.kwon.shapeview
 
 import android.content.res.ColorStateList
 import android.graphics.Canvas
@@ -9,11 +9,11 @@ import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.RippleDrawable
 import android.view.View
 
-open class ShapeViewImpl(
+open class ShapeViewDelegateImpl(
 
     protected val view: View
 
-) : ShapeView {
+) : ShapeViewDelegate {
 
     /**
      * initialize state.
@@ -151,7 +151,7 @@ open class ShapeViewImpl(
     }
 
     /**
-     * Create and apply the background and foreground to be used in ShapeContainer.
+     * Create and apply the background and foreground to be used in ShapeView.
      */
     override fun invalidateShape() {
         if (!isInitialized) {
@@ -162,7 +162,7 @@ open class ShapeViewImpl(
     }
 
     /**
-     * Returns the background to use in the ShapeContainer.
+     * Returns the background to use in the ShapeView.
      */
     override fun createBackground(): GradientDrawable = GradientDrawable().apply {
         this.shape = GradientDrawable.RECTANGLE
@@ -177,7 +177,7 @@ open class ShapeViewImpl(
     }
 
     /**
-     * Returns the foreground to use in the ShapeContainer.
+     * Returns the foreground to use in the ShapeView.
      */
     override fun createForeground(mask: Drawable): RippleDrawable? =
         when (val rippleColor = rippleColor) {

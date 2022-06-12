@@ -1,4 +1,4 @@
-package dylan.kwon.shapecontainer.sample
+package dylan.kwon.shapeview.sample
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("dylan.kwon.shapecontainer.sample", appContext.packageName)
+        assertEquals("fundylan.kwon.shapeview.sample", appContext.packageName)
     }
 }

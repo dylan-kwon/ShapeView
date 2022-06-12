@@ -1,7 +1,7 @@
-# ShapeContainer
-[![](https://jitpack.io/v/dylan-kwon/ShapeContainer.svg)](https://jitpack.io/#dylan-kwon/ShapeContainer)
+# ShapeView
+[![](https://jitpack.io/v/dylan-kwon/ShapeView.svg)](https://jitpack.io/#dylan-kwon/ShapeView)
 
-**ShapeContainer** is a container layout that allows you to use ShapeDrawable attributes immediately in layout xml without creating a separate ShapeDrawable.
+**ShapeView** is a view or layout that allows you to use ShapeDrawable attributes immediately in layout xml without creating a separate ShapeDrawable.
 
 ## Preview
 <p>
@@ -22,13 +22,13 @@ allprojects {
 ### App: build.gradle
 ``` groovy
 dependencies {
-    implementation 'com.github.dylan-kwon:ShapeContainer:$latest-version'
+    implementation 'com.github.dylan-kwon:ShapeView:$latest-version'
 }
 ```
 
 ### Attributes
 ```xml
-<dylan.kwon.shapecontainer.ShapeContainer
+<fundylan.kwon.shapeview.ShapeContainer
     android:layout_width="100dp"
     android:layout_height="100dp"
 

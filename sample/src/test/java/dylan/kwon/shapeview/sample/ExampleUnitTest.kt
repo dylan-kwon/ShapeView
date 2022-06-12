@@ -1,4 +1,4 @@
-package dylan.kwon.shapecontainer.sample
+package dylan.kwon.shapeview.sample
 
 import org.junit.Test
 

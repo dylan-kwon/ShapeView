@@ -1,4 +1,4 @@
-package dylan.kwon.shapecontainer
+package dylan.kwon.shapeview
 
 import android.content.Context
 import android.content.res.ColorStateList
@@ -17,13 +17,13 @@ open class ShapeContainer @JvmOverloads constructor(
     @AttrRes defStyleAttr: Int = 0,
     @StyleRes defStyleRes: Int = 0
 
-) : FrameLayout(context, attrs, defStyleAttr, defStyleRes), ShapeView.Updatable {
+) : FrameLayout(context, attrs, defStyleAttr, defStyleRes), ShapeView {
 
     /**
      * Shape View.
      */
-    protected val shapeView: ShapeView by lazy {
-        ShapeViewImpl(this)
+    protected val delegate: ShapeViewDelegate by lazy {
+        ShapeViewDelegateImpl(this)
     }
 
     /**
@@ -37,25 +37,25 @@ open class ShapeContainer @JvmOverloads constructor(
                 R.styleable.ShapeContainer_cornerRadius, -1f
             )
             if (cornerEnabledRadius > -1) {
-                shapeView.setCornerRadius(cornerEnabledRadius)
+                delegate.setCornerRadius(cornerEnabledRadius)
             } else {
-                shapeView.topLeftRadius = it.getDimension(
+                delegate.topLeftRadius = it.getDimension(
                     R.styleable.ShapeContainer_topLeftRadius, 0f
                 )
-                shapeView.topRightRadius = it.getDimension(
+                delegate.topRightRadius = it.getDimension(
                     R.styleable.ShapeContainer_topRightRadius, 0f
                 )
-                shapeView.bottomLeftRadius = it.getDimension(
+                delegate.bottomLeftRadius = it.getDimension(
                     R.styleable.ShapeContainer_bottomLeftRadius, 0f
                 )
-                shapeView.bottomRightRadius = it.getDimension(
+                delegate.bottomRightRadius = it.getDimension(
                     R.styleable.ShapeContainer_bottomRightRadius, 0f
                 )
             }
-            shapeView.shapeColor = it.getColorStateList(
+            delegate.shapeColor = it.getColorStateList(
                 R.styleable.ShapeContainer_solidColor
             )
-            shapeView.rippleColor = it.getColorStateList(
+            delegate.rippleColor = it.getColorStateList(
                 R.styleable.ShapeContainer_rippleColor,
             ) ?: ColorStateList(
                 arrayOf(
@@ -68,23 +68,23 @@ open class ShapeContainer @JvmOverloads constructor(
                     )
                 )
             )
-            shapeView.strokeWidth = it.getDimension(
+            delegate.strokeWidth = it.getDimension(
                 R.styleable.ShapeContainer_strokeWidth, 0f
             )
-            shapeView.strokeDashWidth = it.getDimension(
+            delegate.strokeDashWidth = it.getDimension(
                 R.styleable.ShapeContainer_strokeDashWidth, 0f
             )
-            shapeView.strokeDashGap = it.getDimension(
+            delegate.strokeDashGap = it.getDimension(
                 R.styleable.ShapeContainer_strokeDashGap, 0f
             )
-            shapeView.strokeColor = it.getColorStateList(
+            delegate.strokeColor = it.getColorStateList(
                 R.styleable.ShapeContainer_strokeColor
             )
-            shapeView.useClip = it.getBoolean(
+            delegate.useClip = it.getBoolean(
                 R.styleable.ShapeContainer_useClip, false
             )
         }
-        shapeView.apply {
+        delegate.apply {
             isInitialized = true
             invalidateShape()
         }
@@ -94,7 +94,7 @@ open class ShapeContainer @JvmOverloads constructor(
      * If useClip is true, clip the corner.
      */
     override fun draw(canvas: Canvas?) {
-        shapeView.draw(canvas)
+        delegate.draw(canvas)
         super.draw(canvas)
     }
 
@@ -102,83 +102,83 @@ open class ShapeContainer @JvmOverloads constructor(
      * change shape color.
      */
     override fun setShapeColor(color: ColorStateList?) {
-        shapeView.shapeColor = color
+        delegate.shapeColor = color
     }
 
     /**
      * change ripple color.
      */
     override fun setRippleColor(color: ColorStateList?) {
-        shapeView.rippleColor = color
+        delegate.rippleColor = color
     }
 
     /**
      * change shape color.
      */
     override fun setStrokeWidth(width: Float) {
-        shapeView.strokeWidth = width
+        delegate.strokeWidth = width
     }
 
     /**
      * change stroke dash width.
      */
     override fun setStrokeDashWidth(width: Float) {
-        shapeView.strokeDashWidth = width
+        delegate.strokeDashWidth = width
     }
 
     /**
      * change stroke dash gap.
      */
     override fun setStrokeDashGap(gap: Float) {
-        shapeView.strokeDashGap = gap
+        delegate.strokeDashGap = gap
     }
 
     /**
      * change stroke color.
      */
     override fun setStrokeColor(color: ColorStateList?) {
-        shapeView.strokeColor = color
+        delegate.strokeColor = color
     }
 
     /**
      * change all radius.
      */
     override fun setRadius(radius: Float) {
-        shapeView.setCornerRadius(radius)
+        delegate.setCornerRadius(radius)
     }
 
     /**
      * change top-left radius.
      */
     override fun setTopLeftRadius(radius: Float) {
-        shapeView.topLeftRadius = radius
+        delegate.topLeftRadius = radius
     }
 
     /**
      * change top-right radius.
      */
     override fun setTopRightRadius(radius: Float) {
-        shapeView.topRightRadius = radius
+        delegate.topRightRadius = radius
     }
 
     /**
      * change bottom-left radius.
      */
     override fun setBottomLeftRadius(radius: Float) {
-        shapeView.bottomLeftRadius = radius
+        delegate.bottomLeftRadius = radius
     }
 
     /**
      * change bottom-right radius.
      */
     override fun setBottomRightRadius(radius: Float) {
-        shapeView.bottomRightRadius = radius
+        delegate.bottomRightRadius = radius
     }
 
     /**
      * change use clip.
      */
     override fun setUseClip(useClip: Boolean) {
-        shapeView.useClip = useClip
+        delegate.useClip = useClip
     }
 }

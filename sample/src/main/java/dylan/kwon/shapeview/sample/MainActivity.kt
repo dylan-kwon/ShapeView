@@ -1,9 +1,9 @@
-package dylan.kwon.shapecontainer.sample
+package dylan.kwon.shapeview.sample
 
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import dylan.kwon.shapecontainer.sample.databinding.ActivityMainBinding
+import dylan.kwon.shapeview.sample.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 

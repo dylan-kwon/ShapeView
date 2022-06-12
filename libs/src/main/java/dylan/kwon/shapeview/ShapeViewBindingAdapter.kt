@@ -1,13 +1,13 @@
-package dylan.kwon.shapecontainer
+package dylan.kwon.shapeview
 
 import androidx.databinding.BindingMethod
 import androidx.databinding.BindingMethods
 
 @BindingMethods(
     BindingMethod(
-        type = ShapeContainer::class,
+        type = ShapeView::class,
         attribute = "solidColor",
         method = "setShapeColor"
     ),
 )
-object ShapeContainerBindingAdapter
+object ShapeViewBindingAdapter

@@ -1,4 +1,4 @@
-package dylan.kwon.shapecontainer
+package dylan.kwon.shapeview
 
 import android.content.res.ColorStateList
 import android.graphics.Canvas
@@ -6,7 +6,10 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.RippleDrawable
 
-interface ShapeView {
+/**
+ * ShapeView Delegate.
+ */
+interface ShapeViewDelegate {
 
     /**
      * initialize state.
@@ -84,88 +87,22 @@ interface ShapeView {
     fun setCornerRadius(radius: Float)
 
     /**
-     * Create and apply the background and foreground to be used in ShapeContainer.
+     * Create and apply the background and foreground to be used in the ShapeView.
      */
     fun invalidateShape()
 
     /**
-     * Returns the background to use in the ShapeContainer.
+     * Returns the background to use in the ShapeView.
      */
     fun createBackground(): GradientDrawable
 
     /**
-     * Returns the foreground to use in the ShapeContainer.
+     * Returns the foreground to use in the ShapeView.
      */
     fun createForeground(mask: Drawable): RippleDrawable?
-
 
     /**
      * Returns the radius.
      */
     fun createRadius(): FloatArray
-
-    /**
-     * Updatable.
-     */
-    interface Updatable {
-        /**
-         * change shape color.
-         */
-        fun setShapeColor(color: ColorStateList?)
-
-        /**
-         * change ripple color.
-         */
-        fun setRippleColor(color: ColorStateList?)
-
-        /**
-         * change shape color.
-         */
-        fun setStrokeWidth(width: Float)
-
-        /**
-         * change stroke dash width.
-         */
-        fun setStrokeDashWidth(width: Float)
-
-        /**
-         * change stroke dash gap.
-         */
-        fun setStrokeDashGap(gap: Float)
-
-        /**
-         * change stroke color.
-         */
-        fun setStrokeColor(color: ColorStateList?)
-
-        /**
-         * change all radius.
-         */
-        fun setRadius(radius: Float)
-
-        /**
-         * change top-left radius.
-         */
-        fun setTopLeftRadius(radius: Float)
-
-        /**
-         * change top-right radius.
-         */
-        fun setTopRightRadius(radius: Float)
-
-        /**
-         * change bottom-left radius.
-         */
-        fun setBottomLeftRadius(radius: Float)
-
-        /**
-         * change bottom-right radius.
-         */
-        fun setBottomRightRadius(radius: Float)
-
-        /**
-         * change use clip.
-         */
-        fun setUseClip(useClip: Boolean)
-    }
 }
