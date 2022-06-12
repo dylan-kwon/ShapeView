@@ -1,17 +1,11 @@
 package dylan.kwon.shapeview.component
 
 import android.content.Context
-import android.content.res.ColorStateList
 import android.graphics.Canvas
 import android.util.AttributeSet
 import androidx.annotation.AttrRes
 import androidx.appcompat.widget.AppCompatToggleButton
-import androidx.core.content.res.use
-import com.google.android.material.color.MaterialColors
-import dylan.kwon.shapeview.R
-import dylan.kwon.shapeview.ShapeView
-import dylan.kwon.shapeview.ShapeViewDelegate
-import dylan.kwon.shapeview.ShapeViewDelegateImpl
+import dylan.kwon.shapeview.*
 
 open class ShapeToggleButton @JvmOverloads constructor(
 
@@ -25,73 +19,31 @@ open class ShapeToggleButton @JvmOverloads constructor(
      * ShapeView Delegate.
      */
     final override val delegate: ShapeViewDelegate by lazy {
-        ShapeViewDelegateImpl(this)
+        ShapeViewDelegateImpl(this, attrs, defStyleAttr)
     }
 
     /**
      * initialize.
      */
     init {
-        context.obtainStyledAttributes(
-            attrs, R.styleable.ShapeToggleButton, defStyleAttr, 0
-        ).use {
-            val cornerEnabledRadius = it.getDimension(
-                R.styleable.ShapeToggleButton_cornerRadius, -1f
+        delegate.init(
+            ShapeViewAttrIds(
+                attrs = R.styleable.ShapeToggleButton,
+                cornerRadius = R.styleable.ShapeToggleButton_cornerRadius,
+                topLeftRadius = R.styleable.ShapeToggleButton_topLeftRadius,
+                topRightRadius = R.styleable.ShapeToggleButton_topRightRadius,
+                bottomLeftRadius = R.styleable.ShapeToggleButton_bottomLeftRadius,
+                bottomRightRadius = R.styleable.ShapeToggleButton_bottomRightRadius,
+                solidColor = R.styleable.ShapeToggleButton_solidColor,
+                rippleColor = R.styleable.ShapeToggleButton_rippleColor,
+                strokeWidth = R.styleable.ShapeToggleButton_strokeWidth,
+                strokeDashWidth = R.styleable.ShapeToggleButton_strokeDashWidth,
+                strokeDashGap = R.styleable.ShapeToggleButton_strokeDashGap,
+                strokeColor = R.styleable.ShapeToggleButton_strokeColor,
+                useClip = R.styleable.ShapeToggleButton_useClip,
             )
-            if (cornerEnabledRadius > -1) {
-                delegate.setCornerRadius(cornerEnabledRadius)
-            } else {
-                delegate.topLeftRadius = it.getDimension(
-                    R.styleable.ShapeToggleButton_topLeftRadius, 0f
-                )
-                delegate.topRightRadius = it.getDimension(
-                    R.styleable.ShapeToggleButton_topRightRadius, 0f
-                )
-                delegate.bottomLeftRadius = it.getDimension(
-                    R.styleable.ShapeToggleButton_bottomLeftRadius, 0f
-                )
-                delegate.bottomRightRadius = it.getDimension(
-                    R.styleable.ShapeToggleButton_bottomRightRadius, 0f
-                )
-            }
-            delegate.shapeColor = it.getColorStateList(
-                R.styleable.ShapeToggleButton_solidColor
-            )
-            delegate.rippleColor = it.getColorStateList(
-                R.styleable.ShapeToggleButton_rippleColor,
-            ) ?: ColorStateList(
-                arrayOf(
-                    intArrayOf()
-                ),
-                intArrayOf(
-                    MaterialColors.getColor(
-                        this,
-                        com.google.android.material.R.attr.colorControlHighlight
-                    )
-                )
-            )
-            delegate.strokeWidth = it.getDimension(
-                R.styleable.ShapeToggleButton_strokeWidth, 0f
-            )
-            delegate.strokeDashWidth = it.getDimension(
-                R.styleable.ShapeToggleButton_strokeDashWidth, 0f
-            )
-            delegate.strokeDashGap = it.getDimension(
-                R.styleable.ShapeToggleButton_strokeDashGap, 0f
-            )
-            delegate.strokeColor = it.getColorStateList(
-                R.styleable.ShapeToggleButton_strokeColor
-            )
-            delegate.useClip = it.getBoolean(
-                R.styleable.ShapeToggleButton_useClip, false
-            )
-        }
+        )
         stateListAnimator = null
-
-        delegate.apply {
-            isInitialized = true
-            invalidateShape()
-        }
     }
 
     /**

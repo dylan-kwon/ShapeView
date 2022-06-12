@@ -7,11 +7,19 @@ import android.graphics.RectF
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.RippleDrawable
+import android.util.AttributeSet
 import android.view.View
+import androidx.annotation.AttrRes
+import androidx.annotation.StyleRes
+import androidx.core.content.res.use
+import com.google.android.material.color.MaterialColors
 
 open class ShapeViewDelegateImpl(
 
-    protected val view: View
+    protected val view: View,
+    val attrs: AttributeSet? = null,
+    @AttrRes val defStyleAttr: Int = 0,
+    @StyleRes val defStyleRes: Int = 0
 
 ) : ShapeViewDelegate {
 
@@ -118,6 +126,70 @@ open class ShapeViewDelegateImpl(
             field = value
             invalidateShape()
         }
+
+    /**
+     * initialize.
+     */
+    override fun init(attrIds: ShapeViewAttrIds) {
+        view.context.obtainStyledAttributes(
+            this.attrs, attrIds.attrs, defStyleAttr, defStyleRes
+        ).use {
+            val cornerEnabledRadius = it.getDimension(
+                attrIds.cornerRadius, -1f
+            )
+            if (cornerEnabledRadius > -1) {
+                setCornerRadius(cornerEnabledRadius)
+            } else {
+                topLeftRadius = it.getDimension(
+                    attrIds.topLeftRadius, 0f
+                )
+                topRightRadius = it.getDimension(
+                    attrIds.topRightRadius, 0f
+                )
+                bottomLeftRadius = it.getDimension(
+                    attrIds.bottomLeftRadius, 0f
+                )
+                bottomRightRadius = it.getDimension(
+                    attrIds.bottomRightRadius, 0f
+                )
+            }
+            shapeColor = it.getColorStateList(
+                attrIds.solidColor
+            )
+            rippleColor = it.getColorStateList(
+                attrIds.rippleColor,
+            ) ?: ColorStateList(
+                arrayOf(
+                    intArrayOf()
+                ),
+                intArrayOf(
+                    MaterialColors.getColor(
+                        view,
+                        com.google.android.material.R.attr.colorControlHighlight
+                    )
+                )
+            )
+            strokeWidth = it.getDimension(
+                attrIds.strokeWidth, 0f
+            )
+            strokeDashWidth = it.getDimension(
+                attrIds.strokeDashWidth, 0f
+            )
+            strokeDashGap = it.getDimension(
+                attrIds.strokeDashGap, 0f
+            )
+            strokeColor = it.getColorStateList(
+                attrIds.strokeColor
+            )
+            useClip = it.getBoolean(
+                attrIds.useClip, false
+            )
+        }
+        apply {
+            isInitialized = true
+            invalidateShape()
+        }
+    }
 
     /**
      * If useClip is true, clip the corner.

@@ -1,17 +1,11 @@
 package dylan.kwon.shapeview.component
 
 import android.content.Context
-import android.content.res.ColorStateList
 import android.graphics.Canvas
 import android.util.AttributeSet
 import androidx.annotation.AttrRes
 import androidx.appcompat.widget.AppCompatCheckBox
-import androidx.core.content.res.use
-import com.google.android.material.color.MaterialColors
-import dylan.kwon.shapeview.R
-import dylan.kwon.shapeview.ShapeView
-import dylan.kwon.shapeview.ShapeViewDelegate
-import dylan.kwon.shapeview.ShapeViewDelegateImpl
+import dylan.kwon.shapeview.*
 
 open class ShapeRadioButton @JvmOverloads constructor(
 
@@ -25,71 +19,30 @@ open class ShapeRadioButton @JvmOverloads constructor(
      * ShapeView Delegate.
      */
     final override val delegate: ShapeViewDelegate by lazy {
-        ShapeViewDelegateImpl(this)
+        ShapeViewDelegateImpl(this, attrs, defStyleAttr)
     }
 
     /**
      * initialize.
      */
     init {
-        context.obtainStyledAttributes(
-            attrs, R.styleable.ShapeRadioButton, defStyleAttr, 0
-        ).use {
-            val cornerEnabledRadius = it.getDimension(
-                R.styleable.ShapeRadioButton_cornerRadius, -1f
+        delegate.init(
+            ShapeViewAttrIds(
+                attrs = R.styleable.ShapeRadioButton,
+                cornerRadius = R.styleable.ShapeRadioButton_cornerRadius,
+                topLeftRadius = R.styleable.ShapeRadioButton_topLeftRadius,
+                topRightRadius = R.styleable.ShapeRadioButton_topRightRadius,
+                bottomLeftRadius = R.styleable.ShapeRadioButton_bottomLeftRadius,
+                bottomRightRadius = R.styleable.ShapeRadioButton_bottomRightRadius,
+                solidColor = R.styleable.ShapeRadioButton_solidColor,
+                rippleColor = R.styleable.ShapeRadioButton_rippleColor,
+                strokeWidth = R.styleable.ShapeRadioButton_strokeWidth,
+                strokeDashWidth = R.styleable.ShapeRadioButton_strokeDashWidth,
+                strokeDashGap = R.styleable.ShapeRadioButton_strokeDashGap,
+                strokeColor = R.styleable.ShapeRadioButton_strokeColor,
+                useClip = R.styleable.ShapeRadioButton_useClip,
             )
-            if (cornerEnabledRadius > -1) {
-                delegate.setCornerRadius(cornerEnabledRadius)
-            } else {
-                delegate.topLeftRadius = it.getDimension(
-                    R.styleable.ShapeRadioButton_topLeftRadius, 0f
-                )
-                delegate.topRightRadius = it.getDimension(
-                    R.styleable.ShapeRadioButton_topRightRadius, 0f
-                )
-                delegate.bottomLeftRadius = it.getDimension(
-                    R.styleable.ShapeRadioButton_bottomLeftRadius, 0f
-                )
-                delegate.bottomRightRadius = it.getDimension(
-                    R.styleable.ShapeRadioButton_bottomRightRadius, 0f
-                )
-            }
-            delegate.shapeColor = it.getColorStateList(
-                R.styleable.ShapeRadioButton_solidColor
-            )
-            delegate.rippleColor = it.getColorStateList(
-                R.styleable.ShapeRadioButton_rippleColor,
-            ) ?: ColorStateList(
-                arrayOf(
-                    intArrayOf()
-                ),
-                intArrayOf(
-                    MaterialColors.getColor(
-                        this,
-                        com.google.android.material.R.attr.colorControlHighlight
-                    )
-                )
-            )
-            delegate.strokeWidth = it.getDimension(
-                R.styleable.ShapeRadioButton_strokeWidth, 0f
-            )
-            delegate.strokeDashWidth = it.getDimension(
-                R.styleable.ShapeRadioButton_strokeDashWidth, 0f
-            )
-            delegate.strokeDashGap = it.getDimension(
-                R.styleable.ShapeRadioButton_strokeDashGap, 0f
-            )
-            delegate.strokeColor = it.getColorStateList(
-                R.styleable.ShapeRadioButton_strokeColor
-            )
-            delegate.useClip = it.getBoolean(
-                R.styleable.ShapeRadioButton_useClip, false
-            )
-        }
-        delegate.apply {
-            isInitialized = true
-            invalidateShape()
-        }
+        )
     }
 
     /**

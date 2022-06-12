@@ -72,6 +72,11 @@ interface ShapeViewDelegate {
     var useClip: Boolean
 
     /**
+     * initialize.
+     */
+    fun init(attrIds: ShapeViewAttrIds)
+
+    /**
      * If useClip is true, clip the corner.
      */
     fun draw(canvas: Canvas?)

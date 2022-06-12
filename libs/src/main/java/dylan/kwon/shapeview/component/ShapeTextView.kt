@@ -1,17 +1,11 @@
 package dylan.kwon.shapeview.component
 
 import android.content.Context
-import android.content.res.ColorStateList
 import android.graphics.Canvas
 import android.util.AttributeSet
 import androidx.annotation.AttrRes
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.res.use
-import com.google.android.material.color.MaterialColors
-import dylan.kwon.shapeview.R
-import dylan.kwon.shapeview.ShapeView
-import dylan.kwon.shapeview.ShapeViewDelegate
-import dylan.kwon.shapeview.ShapeViewDelegateImpl
+import dylan.kwon.shapeview.*
 
 open class ShapeTextView @JvmOverloads constructor(
 
@@ -25,71 +19,30 @@ open class ShapeTextView @JvmOverloads constructor(
      * ShapeView Delegate.
      */
     final override val delegate: ShapeViewDelegate by lazy {
-        ShapeViewDelegateImpl(this)
+        ShapeViewDelegateImpl(this, attrs, defStyleAttr)
     }
 
     /**
      * initialize.
      */
     init {
-        context.obtainStyledAttributes(
-            attrs, R.styleable.ShapeTextView, defStyleAttr, 0
-        ).use {
-            val cornerEnabledRadius = it.getDimension(
-                R.styleable.ShapeTextView_cornerRadius, -1f
+        delegate.init(
+            ShapeViewAttrIds(
+                attrs = R.styleable.ShapeTextView,
+                cornerRadius = R.styleable.ShapeTextView_cornerRadius,
+                topLeftRadius = R.styleable.ShapeTextView_topLeftRadius,
+                topRightRadius = R.styleable.ShapeTextView_topRightRadius,
+                bottomLeftRadius = R.styleable.ShapeTextView_bottomLeftRadius,
+                bottomRightRadius = R.styleable.ShapeTextView_bottomRightRadius,
+                solidColor = R.styleable.ShapeTextView_solidColor,
+                rippleColor = R.styleable.ShapeTextView_rippleColor,
+                strokeWidth = R.styleable.ShapeTextView_strokeWidth,
+                strokeDashWidth = R.styleable.ShapeTextView_strokeDashWidth,
+                strokeDashGap = R.styleable.ShapeTextView_strokeDashGap,
+                strokeColor = R.styleable.ShapeTextView_strokeColor,
+                useClip = R.styleable.ShapeTextView_useClip,
             )
-            if (cornerEnabledRadius > -1) {
-                delegate.setCornerRadius(cornerEnabledRadius)
-            } else {
-                delegate.topLeftRadius = it.getDimension(
-                    R.styleable.ShapeTextView_topLeftRadius, 0f
-                )
-                delegate.topRightRadius = it.getDimension(
-                    R.styleable.ShapeTextView_topRightRadius, 0f
-                )
-                delegate.bottomLeftRadius = it.getDimension(
-                    R.styleable.ShapeTextView_bottomLeftRadius, 0f
-                )
-                delegate.bottomRightRadius = it.getDimension(
-                    R.styleable.ShapeTextView_bottomRightRadius, 0f
-                )
-            }
-            delegate.shapeColor = it.getColorStateList(
-                R.styleable.ShapeTextView_solidColor
-            )
-            delegate.rippleColor = it.getColorStateList(
-                R.styleable.ShapeTextView_rippleColor,
-            ) ?: ColorStateList(
-                arrayOf(
-                    intArrayOf()
-                ),
-                intArrayOf(
-                    MaterialColors.getColor(
-                        this,
-                        com.google.android.material.R.attr.colorControlHighlight
-                    )
-                )
-            )
-            delegate.strokeWidth = it.getDimension(
-                R.styleable.ShapeTextView_strokeWidth, 0f
-            )
-            delegate.strokeDashWidth = it.getDimension(
-                R.styleable.ShapeTextView_strokeDashWidth, 0f
-            )
-            delegate.strokeDashGap = it.getDimension(
-                R.styleable.ShapeTextView_strokeDashGap, 0f
-            )
-            delegate.strokeColor = it.getColorStateList(
-                R.styleable.ShapeTextView_strokeColor
-            )
-            delegate.useClip = it.getBoolean(
-                R.styleable.ShapeTextView_useClip, false
-            )
-        }
-        delegate.apply {
-            isInitialized = true
-            invalidateShape()
-        }
+        )
     }
 
     /**
