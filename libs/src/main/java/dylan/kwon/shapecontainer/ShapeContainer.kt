@@ -3,11 +3,6 @@ package dylan.kwon.shapecontainer
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Canvas
-import android.graphics.Path
-import android.graphics.RectF
-import android.graphics.drawable.Drawable
-import android.graphics.drawable.GradientDrawable
-import android.graphics.drawable.RippleDrawable
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.annotation.AttrRes
@@ -22,108 +17,14 @@ open class ShapeContainer @JvmOverloads constructor(
     @AttrRes defStyleAttr: Int = 0,
     @StyleRes defStyleRes: Int = 0
 
-) : FrameLayout(context, attrs, defStyleAttr, defStyleRes) {
-
-    private var isInitialized = false
+) : FrameLayout(context, attrs, defStyleAttr, defStyleRes), ShapeView.Updatable {
 
     /**
-     * Background color.
+     * Shape View.
      */
-    var shapeColor: ColorStateList? = null
-        set(value) {
-            field = value
-            invalidateShape()
-        }
-
-    /**
-     * Ripple color.
-     */
-    var rippleColor: ColorStateList? = null
-        set(value) {
-            field = value
-            invalidateShape()
-        }
-
-    /**
-     * Stroke width.
-     */
-    var strokeWidth: Float = 0f
-        set(value) {
-            field = value
-            invalidateShape()
-        }
-
-    /**
-     * Stroke dash width.
-     */
-    var strokeDashWidth: Float = 0f
-        set(value) {
-            field = value
-            invalidateShape()
-        }
-
-    /**
-     * Stroke dash gap.
-     */
-    var strokeDashGap: Float = 0f
-        set(value) {
-            field = value
-            invalidateShape()
-        }
-
-    /**
-     * Stroke color.
-     */
-    var strokeColor: ColorStateList? = null
-        set(value) {
-            field = value
-            invalidateShape()
-        }
-
-    /**
-     * top-left radius.
-     */
-    var topLeftRadius: Float = 0f
-        set(value) {
-            field = value
-            invalidateShape()
-        }
-
-    /**
-     * top-right radius.
-     */
-    var topRightRadius: Float = 0f
-        set(value) {
-            field = value
-            invalidateShape()
-        }
-
-    /**
-     * bottom-left radius.
-     */
-    var bottomLeftRadius: Float = 0f
-        set(value) {
-            field = value
-            invalidateShape()
-        }
-
-    /**
-     * bottom-right radius.
-     */
-    var bottomRightRadius: Float = 0f
-        set(value) {
-            field = value
-            invalidateShape()
-        }
-
-    /**
-     * If this value is true, the edges are clipped by the radius.
-     */
-    var useClip: Boolean = false
-        set(value) {
-            field = value
-            invalidateShape()
-        }
+    protected val shapeView: ShapeView by lazy {
+        ShapeViewImpl(this)
+    }
 
     /**
      * initialize.
@@ -136,25 +37,25 @@ open class ShapeContainer @JvmOverloads constructor(
                 R.styleable.ShapeContainer_cornerRadius, -1f
             )
             if (cornerEnabledRadius > -1) {
-                setCornerEnabledRadius(cornerEnabledRadius)
+                shapeView.setCornerRadius(cornerEnabledRadius)
             } else {
-                topLeftRadius = it.getDimension(
+                shapeView.topLeftRadius = it.getDimension(
                     R.styleable.ShapeContainer_topLeftRadius, 0f
                 )
-                topRightRadius = it.getDimension(
+                shapeView.topRightRadius = it.getDimension(
                     R.styleable.ShapeContainer_topRightRadius, 0f
                 )
-                bottomLeftRadius = it.getDimension(
+                shapeView.bottomLeftRadius = it.getDimension(
                     R.styleable.ShapeContainer_bottomLeftRadius, 0f
                 )
-                bottomRightRadius = it.getDimension(
+                shapeView.bottomRightRadius = it.getDimension(
                     R.styleable.ShapeContainer_bottomRightRadius, 0f
                 )
             }
-            shapeColor = it.getColorStateList(
+            shapeView.shapeColor = it.getColorStateList(
                 R.styleable.ShapeContainer_solidColor
             )
-            rippleColor = it.getColorStateList(
+            shapeView.rippleColor = it.getColorStateList(
                 R.styleable.ShapeContainer_rippleColor,
             ) ?: ColorStateList(
                 arrayOf(
@@ -167,111 +68,117 @@ open class ShapeContainer @JvmOverloads constructor(
                     )
                 )
             )
-            strokeWidth = it.getDimension(
+            shapeView.strokeWidth = it.getDimension(
                 R.styleable.ShapeContainer_strokeWidth, 0f
             )
-            strokeDashWidth = it.getDimension(
+            shapeView.strokeDashWidth = it.getDimension(
                 R.styleable.ShapeContainer_strokeDashWidth, 0f
             )
-            strokeDashGap = it.getDimension(
+            shapeView.strokeDashGap = it.getDimension(
                 R.styleable.ShapeContainer_strokeDashGap, 0f
             )
-            strokeColor = it.getColorStateList(
+            shapeView.strokeColor = it.getColorStateList(
                 R.styleable.ShapeContainer_strokeColor
             )
-            isEnabled = it.getBoolean(
-                R.styleable.ShapeContainer_enabled, true
-            )
-            useClip = it.getBoolean(
+            shapeView.useClip = it.getBoolean(
                 R.styleable.ShapeContainer_useClip, false
             )
         }
-        isInitialized = true
-
-        invalidateShape()
+        shapeView.apply {
+            isInitialized = true
+            invalidateShape()
+        }
     }
 
     /**
      * If useClip is true, clip the corner.
      */
     override fun draw(canvas: Canvas?) {
-        if (useClip && canvas != null) {
-            clip(canvas)
-        }
+        shapeView.draw(canvas)
         super.draw(canvas)
     }
 
     /**
-     * The edges are clipped by the radius.
+     * change shape color.
      */
-    @Suppress("MemberVisibilityCanBePrivate")
-    protected fun clip(canvas: Canvas) {
-        val clipPath = Path().apply {
-            addRoundRect(
-                RectF(canvas.clipBounds), createRadius(), Path.Direction.CW
-            )
-        }
-        canvas.clipPath(clipPath)
+    override fun setShapeColor(color: ColorStateList?) {
+        shapeView.shapeColor = color
     }
 
     /**
-     * Apply radius to all enabled corners.
+     * change ripple color.
      */
-    fun setCornerEnabledRadius(radius: Float) {
-        topLeftRadius = radius
-        topRightRadius = radius
-        bottomLeftRadius = radius
-        bottomRightRadius = radius
+    override fun setRippleColor(color: ColorStateList?) {
+        shapeView.rippleColor = color
     }
 
     /**
-     * Create and apply the background and foreground to be used in ShapeContainer.
+     * change shape color.
      */
-    private fun invalidateShape() {
-        if (!isInitialized) {
-            return
-        }
-        background = createBackground()
-        foreground = createForeground(background)
+    override fun setStrokeWidth(width: Float) {
+        shapeView.strokeWidth = width
     }
 
     /**
-     * Returns the background to use in the ShapeContainer.
+     * change stroke dash width.
      */
-    private fun createBackground(): GradientDrawable = GradientDrawable().apply {
-        this.shape = GradientDrawable.RECTANGLE
-        this.color = shapeColor
-        this.cornerRadii = createRadius()
-        this.setStroke(
-            strokeWidth.toInt(),
-            strokeColor,
-            strokeDashWidth,
-            strokeDashGap
-        )
+    override fun setStrokeDashWidth(width: Float) {
+        shapeView.strokeDashWidth = width
     }
 
     /**
-     * Returns the foreground to use in the ShapeContainer.
+     * change stroke dash gap.
      */
-    protected fun createForeground(mask: Drawable): RippleDrawable? =
-        when (val rippleColor = rippleColor) {
-            null -> null
-            else -> RippleDrawable(rippleColor, null, mask)
-        }
-
+    override fun setStrokeDashGap(gap: Float) {
+        shapeView.strokeDashGap = gap
+    }
 
     /**
-     * Returns the radius.
+     * change stroke color.
      */
-    protected fun createRadius(): FloatArray = floatArrayOf(
-        topLeftRadius,
-        topLeftRadius,
-        topRightRadius,
-        topRightRadius,
-        bottomLeftRadius,
-        bottomLeftRadius,
-        bottomRightRadius,
-        bottomRightRadius
-    )
+    override fun setStrokeColor(color: ColorStateList?) {
+        shapeView.strokeColor = color
+    }
 
+    /**
+     * change all radius.
+     */
+    override fun setRadius(radius: Float) {
+        shapeView.setCornerRadius(radius)
+    }
+
+    /**
+     * change top-left radius.
+     */
+    override fun setTopLeftRadius(radius: Float) {
+        shapeView.topLeftRadius = radius
+    }
+
+    /**
+     * change top-right radius.
+     */
+    override fun setTopRightRadius(radius: Float) {
+        shapeView.topRightRadius = radius
+    }
+
+    /**
+     * change bottom-left radius.
+     */
+    override fun setBottomLeftRadius(radius: Float) {
+        shapeView.bottomLeftRadius = radius
+    }
+
+    /**
+     * change bottom-right radius.
+     */
+    override fun setBottomRightRadius(radius: Float) {
+        shapeView.bottomRightRadius = radius
+    }
+
+    /**
+     * change use clip.
+     */
+    override fun setUseClip(useClip: Boolean) {
+        shapeView.useClip = useClip
+    }
 }

@@ -21,9 +21,6 @@
         <!-- Ripple -->
         <attr name="rippleColor" format="color" />
 
-        <!-- Enabled -->
-        <attr name="enabled" format="boolean" />
-
         <!-- Clip -->
         <attr name="useClip" format="boolean" />
 

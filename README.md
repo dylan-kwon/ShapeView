@@ -45,7 +45,6 @@ dependencies {
 
     app:rippleColor="@color/red"
     
-    app:enabled="true"
     app:useClip="true" />
 ```
 
@@ -58,6 +57,5 @@ dependencies {
 | app:strokeDashGap  | Stroke dash gap in enabled.  |
 | app:cornerRadius  | Radius in enabled.  |
 | app:rippleColor  | Container ripple color.  |
-| app:enabled  | container activation status.  |
 | app:useClip  | Whether to cut corner radius.  |
 
