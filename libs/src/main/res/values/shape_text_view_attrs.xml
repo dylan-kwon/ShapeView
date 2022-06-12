@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ShapeTextView">
+        <!-- Radius -->
+        <attr name="cornerRadius" />
+        <attr name="topLeftRadius" />
+        <attr name="topRightRadius" />
+        <attr name="bottomLeftRadius" />
+        <attr name="bottomRightRadius" />
+
+        <!-- Solid -->
+        <attr name="solidColor" />
+
+        <!-- Stroke -->
+        <attr name="strokeWidth" />
+        <attr name="strokeDashWidth" />
+        <attr name="strokeDashGap" />
+        <attr name="strokeColor" />
+
+        <!-- Ripple -->
+        <attr name="rippleColor" />
+
+        <!-- Clip -->
+        <attr name="useClip" />
+
+    </declare-styleable>
+
+</resources>
