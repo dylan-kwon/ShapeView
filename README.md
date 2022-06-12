@@ -38,7 +38,7 @@ dependencies {
 
 ### Attributes
 ```xml
-<fundylan.kwon.shapeview.ShapeContainer
+<dylan.kwon.shapeview.component.ShapeContainer
     android:layout_width="100dp"
     android:layout_height="100dp"
 
