@@ -47,7 +47,6 @@
             app:layout_constraintEnd_toStartOf="@id/third"
             app:layout_constraintStart_toEndOf="@id/first"
             app:layout_constraintTop_toTopOf="@id/first"
-            app:solidColor="@{@color/white}"
             app:strokeColor="@{@color/red}"
             app:strokeDashGap="5dp"
             app:strokeDashWidth="5dp"

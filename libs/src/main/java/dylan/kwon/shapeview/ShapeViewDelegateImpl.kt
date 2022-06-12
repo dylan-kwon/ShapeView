@@ -2,6 +2,7 @@ package dylan.kwon.shapeview
 
 import android.content.res.ColorStateList
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Path
 import android.graphics.RectF
 import android.graphics.drawable.Drawable
@@ -155,6 +156,13 @@ open class ShapeViewDelegateImpl(
             }
             shapeColor = it.getColorStateList(
                 attrIds.solidColor
+            ) ?: ColorStateList(
+                arrayOf(
+                    intArrayOf()
+                ),
+                intArrayOf(
+                    Color.WHITE
+                )
             )
             rippleColor = it.getColorStateList(
                 attrIds.rippleColor,
