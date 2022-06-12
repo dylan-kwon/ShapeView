@@ -26,6 +26,16 @@ dependencies {
 }
 ```
 
+### Provide components
+1. ShapeContainer
+2. ShapeTextView
+3. ShapeButton
+4. ShapeToggleButton
+5. ShapeRadioButton
+6. ShapeCheckBox
+7. ShapeImageView
+8. ShapeImageButton
+
 ### Attributes
 ```xml
 <fundylan.kwon.shapeview.ShapeContainer
