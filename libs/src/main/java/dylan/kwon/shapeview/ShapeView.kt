@@ -57,7 +57,7 @@ interface ShapeView {
     /**
      * change all radius.
      */
-    fun setRadius(radius: Float) {
+    fun setCornerRadius(radius: Float) {
         delegate.setCornerRadius(radius)
     }
 
