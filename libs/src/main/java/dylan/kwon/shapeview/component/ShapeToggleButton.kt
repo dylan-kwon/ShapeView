@@ -22,9 +22,9 @@ open class ShapeToggleButton @JvmOverloads constructor(
     ) : AppCompatToggleButton(context, attrs, defStyleAttr), ShapeView {
 
     /**
-     * Shape View.
+     * ShapeView Delegate.
      */
-    protected val delegate: ShapeViewDelegate by lazy {
+    final override val delegate: ShapeViewDelegate by lazy {
         ShapeViewDelegateImpl(this)
     }
 
@@ -100,89 +100,5 @@ open class ShapeToggleButton @JvmOverloads constructor(
     override fun draw(canvas: Canvas?) {
         delegate.draw(canvas)
         super.draw(canvas)
-    }
-
-    /**
-     * change shape color.
-     */
-    override fun setShapeColor(color: ColorStateList?) {
-        delegate.shapeColor = color
-    }
-
-    /**
-     * change ripple color.
-     */
-    override fun setRippleColor(color: ColorStateList?) {
-        delegate.rippleColor = color
-    }
-
-    /**
-     * change shape color.
-     */
-    override fun setStrokeWidth(width: Float) {
-        delegate.strokeWidth = width
-    }
-
-    /**
-     * change stroke dash width.
-     */
-    override fun setStrokeDashWidth(width: Float) {
-        delegate.strokeDashWidth = width
-    }
-
-    /**
-     * change stroke dash gap.
-     */
-    override fun setStrokeDashGap(gap: Float) {
-        delegate.strokeDashGap = gap
-    }
-
-    /**
-     * change stroke color.
-     */
-    override fun setStrokeColor(color: ColorStateList?) {
-        delegate.strokeColor = color
-    }
-
-    /**
-     * change all radius.
-     */
-    override fun setRadius(radius: Float) {
-        delegate.setCornerRadius(radius)
-    }
-
-    /**
-     * change top-left radius.
-     */
-    override fun setTopLeftRadius(radius: Float) {
-        delegate.topLeftRadius = radius
-    }
-
-    /**
-     * change top-right radius.
-     */
-    override fun setTopRightRadius(radius: Float) {
-        delegate.topRightRadius = radius
-    }
-
-    /**
-     * change bottom-left radius.
-     */
-    override fun setBottomLeftRadius(radius: Float) {
-        delegate.bottomLeftRadius = radius
-    }
-
-    /**
-     * change bottom-right radius.
-     */
-    override fun setBottomRightRadius(radius: Float) {
-        delegate.bottomRightRadius = radius
-    }
-
-    /**
-     * change use clip.
-     */
-    override fun setUseClip(useClip: Boolean) {
-        delegate.useClip = useClip
     }
 }

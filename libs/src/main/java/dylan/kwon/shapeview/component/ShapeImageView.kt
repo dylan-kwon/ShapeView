@@ -22,9 +22,9 @@ open class ShapeImageView @JvmOverloads constructor(
 ) : AppCompatImageView(context, attrs, defStyleAttr), ShapeView {
 
     /**
-     * Shape View.
+     * ShapeView Delegate.
      */
-    protected val delegate: ShapeViewDelegate by lazy {
+    final override val delegate: ShapeViewDelegate by lazy {
         ShapeViewDelegateImpl(this)
     }
 
