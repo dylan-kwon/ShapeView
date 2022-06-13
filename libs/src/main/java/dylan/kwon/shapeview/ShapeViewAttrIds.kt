@@ -16,5 +16,6 @@ class ShapeViewAttrIds(
     @StyleableRes val strokeDashWidth: Int,
     @StyleableRes val strokeDashGap: Int,
     @StyleableRes val strokeColor: Int,
-    @StyleableRes val useClip: Int,
+    @StyleableRes val useClip: Int
+
 )

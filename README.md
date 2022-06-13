@@ -35,6 +35,7 @@ dependencies {
 6. ShapeCheckBox
 7. ShapeImageView
 8. ShapeImageButton
+8. ShapeEditText
 
 ### Attributes
 ```xml

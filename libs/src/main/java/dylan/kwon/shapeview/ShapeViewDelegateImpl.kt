@@ -164,19 +164,21 @@ open class ShapeViewDelegateImpl(
                     Color.WHITE
                 )
             )
-            rippleColor = it.getColorStateList(
-                attrIds.rippleColor,
-            ) ?: ColorStateList(
-                arrayOf(
-                    intArrayOf()
-                ),
-                intArrayOf(
-                    MaterialColors.getColor(
-                        view,
-                        com.google.android.material.R.attr.colorControlHighlight
+            if (attrIds.rippleColor > -1) {
+                rippleColor = it.getColorStateList(
+                    attrIds.rippleColor,
+                ) ?: ColorStateList(
+                    arrayOf(
+                        intArrayOf()
+                    ),
+                    intArrayOf(
+                        MaterialColors.getColor(
+                            view,
+                            com.google.android.material.R.attr.colorControlHighlight
+                        )
                     )
                 )
-            )
+            }
             strokeWidth = it.getDimension(
                 attrIds.strokeWidth, 0f
             )

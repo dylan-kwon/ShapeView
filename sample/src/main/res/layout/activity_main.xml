@@ -24,7 +24,6 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="20dp"
-            android:focusable="true"
             app:cornerRadius="20dp"
             app:layout_constraintEnd_toStartOf="@id/second"
             app:layout_constraintStart_toStartOf="parent"
@@ -75,7 +74,6 @@
             app:strokeDashWidth="5dp"
             app:strokeWidth="5dp"
             app:useClip="true" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
