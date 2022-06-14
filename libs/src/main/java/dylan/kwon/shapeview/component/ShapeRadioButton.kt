@@ -41,6 +41,7 @@ open class ShapeRadioButton @JvmOverloads constructor(
                 strokeDashGap = R.styleable.ShapeRadioButton_strokeDashGap,
                 strokeColor = R.styleable.ShapeRadioButton_strokeColor,
                 useClip = R.styleable.ShapeRadioButton_useClip,
+                useRipple = R.styleable.ShapeRadioButton_useRipple,
             )
         )
     }

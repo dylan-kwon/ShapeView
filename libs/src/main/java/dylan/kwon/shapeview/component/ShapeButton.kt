@@ -41,6 +41,7 @@ open class ShapeButton @JvmOverloads constructor(
                 strokeDashGap = R.styleable.ShapeButton_strokeDashGap,
                 strokeColor = R.styleable.ShapeButton_strokeColor,
                 useClip = R.styleable.ShapeButton_useClip,
+                useRipple = R.styleable.ShapeButton_useRipple,
             )
         )
         stateListAnimator = null

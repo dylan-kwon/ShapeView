@@ -18,6 +18,7 @@
     <attr name="strokeColor" format="color" />
 
     <!-- Ripple -->
+    <attr name="useRipple" format="boolean" />
     <attr name="rippleColor" format="color" />
 
     <!-- Clip -->

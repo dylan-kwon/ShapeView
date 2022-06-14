@@ -41,6 +41,7 @@ open class ShapeImageView @JvmOverloads constructor(
                 strokeDashGap = R.styleable.ShapeImageView_strokeDashGap,
                 strokeColor = R.styleable.ShapeImageView_strokeColor,
                 useClip = R.styleable.ShapeImageView_useClip,
+                useRipple = R.styleable.ShapeImageView_useRipple,
             )
         )
     }

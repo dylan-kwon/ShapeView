@@ -68,5 +68,6 @@ dependencies {
 | app:strokeDashGap  | Stroke dash gap in enabled.  |
 | app:cornerRadius  | Radius in enabled.  |
 | app:rippleColor  | Container ripple color.  |
+| app:useRipple  | Whether to use ripple.  |
 | app:useClip  | Whether to cut corner radius.  |
 

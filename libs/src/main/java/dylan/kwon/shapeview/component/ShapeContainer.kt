@@ -43,6 +43,7 @@ open class ShapeContainer @JvmOverloads constructor(
                 strokeDashGap = R.styleable.ShapeContainer_strokeDashGap,
                 strokeColor = R.styleable.ShapeContainer_strokeColor,
                 useClip = R.styleable.ShapeContainer_useClip,
+                useRipple = R.styleable.ShapeContainer_useRipple,
             )
         )
     }

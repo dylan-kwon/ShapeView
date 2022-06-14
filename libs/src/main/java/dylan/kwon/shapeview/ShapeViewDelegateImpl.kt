@@ -5,7 +5,6 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Path
 import android.graphics.RectF
-import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.RippleDrawable
 import android.os.Build
@@ -129,6 +128,15 @@ open class ShapeViewDelegateImpl(
         }
 
     /**
+     * Whether to use ripple.
+     */
+    override var useRipple: Boolean = false
+        set(value) {
+            field = value
+            invalidateShape()
+        }
+
+    /**
      * initialize.
      */
     override fun init(attrIds: ShapeViewAttrIds) {
@@ -161,10 +169,14 @@ open class ShapeViewDelegateImpl(
                     intArrayOf()
                 ),
                 intArrayOf(
-                    Color.WHITE
+                    Color.TRANSPARENT
                 )
             )
-            if (attrIds.rippleColor > -1) {
+            useRipple =
+                attrIds.useRipple > ShapeViewAttrIds.NONE &&
+                        it.getBoolean(attrIds.useRipple, true)
+
+            if (useRipple && attrIds.rippleColor > ShapeViewAttrIds.NONE) {
                 rippleColor = it.getColorStateList(
                     attrIds.rippleColor,
                 )
@@ -253,8 +265,10 @@ open class ShapeViewDelegateImpl(
         }
         view.background = createBackground()
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            view.foreground = createForeground(view.background)
+        if (useRipple) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                view.foreground = createForeground()
+            }
         }
     }
 
@@ -276,11 +290,24 @@ open class ShapeViewDelegateImpl(
     /**
      * Returns the foreground to use in the ShapeView.
      */
-    override fun createForeground(mask: Drawable): RippleDrawable? =
-        when (val rippleColor = rippleColor) {
-            null -> null
-            else -> RippleDrawable(rippleColor, null, mask)
+    override fun createForeground(): RippleDrawable? {
+        val mask = createBackground().apply {
+            color = ColorStateList(
+                arrayOf(
+                    intArrayOf()
+                ),
+                intArrayOf(
+                    Color.WHITE
+                )
+            )
         }
+        return when (val rippleColor = rippleColor) {
+            null -> null
+            else -> RippleDrawable(
+                rippleColor, null, mask
+            )
+        }
+    }
 
 
     /**

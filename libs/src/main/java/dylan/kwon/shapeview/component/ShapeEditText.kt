@@ -35,7 +35,6 @@ open class ShapeEditText @JvmOverloads constructor(
                 bottomLeftRadius = R.styleable.ShapeEditText_bottomLeftRadius,
                 bottomRightRadius = R.styleable.ShapeEditText_bottomRightRadius,
                 solidColor = R.styleable.ShapeEditText_solidColor,
-                rippleColor = -1,
                 strokeWidth = R.styleable.ShapeEditText_strokeWidth,
                 strokeDashWidth = R.styleable.ShapeEditText_strokeDashWidth,
                 strokeDashGap = R.styleable.ShapeEditText_strokeDashGap,

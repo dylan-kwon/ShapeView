@@ -41,6 +41,7 @@ open class ShapeImageButton @JvmOverloads constructor(
                 strokeDashGap = R.styleable.ShapeImageButton_strokeDashGap,
                 strokeColor = R.styleable.ShapeImageButton_strokeColor,
                 useClip = R.styleable.ShapeImageButton_useClip,
+                useRipple = R.styleable.ShapeImageButton_useRipple,
             )
         )
     }

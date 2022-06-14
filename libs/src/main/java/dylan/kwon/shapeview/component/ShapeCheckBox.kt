@@ -41,6 +41,7 @@ open class ShapeCheckBox @JvmOverloads constructor(
                 strokeDashGap = R.styleable.ShapeCheckBox_strokeDashGap,
                 strokeColor = R.styleable.ShapeCheckBox_strokeColor,
                 useClip = R.styleable.ShapeCheckBox_useClip,
+                useRipple = R.styleable.ShapeCheckBox_useRipple,
             )
         )
     }

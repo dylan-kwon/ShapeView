@@ -16,7 +16,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.second.setOnClickListener {
-            binding.third.isEnabled = !binding.third.isEnabled
             Toast.makeText(this, "Click!!", Toast.LENGTH_SHORT).show()
         }
 

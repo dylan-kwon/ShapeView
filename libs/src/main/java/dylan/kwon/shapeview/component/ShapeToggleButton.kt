@@ -41,6 +41,7 @@ open class ShapeToggleButton @JvmOverloads constructor(
                 strokeDashGap = R.styleable.ShapeToggleButton_strokeDashGap,
                 strokeColor = R.styleable.ShapeToggleButton_strokeColor,
                 useClip = R.styleable.ShapeToggleButton_useClip,
+                useRipple = R.styleable.ShapeToggleButton_useRipple,
             )
         )
         stateListAnimator = null

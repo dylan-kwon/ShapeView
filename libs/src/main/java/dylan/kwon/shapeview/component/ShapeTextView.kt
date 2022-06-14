@@ -41,6 +41,7 @@ open class ShapeTextView @JvmOverloads constructor(
                 strokeDashGap = R.styleable.ShapeTextView_strokeDashGap,
                 strokeColor = R.styleable.ShapeTextView_strokeColor,
                 useClip = R.styleable.ShapeTextView_useClip,
+                useRipple = R.styleable.ShapeTextView_useRipple,
             )
         )
     }

@@ -72,6 +72,11 @@ interface ShapeViewDelegate {
     var useClip: Boolean
 
     /**
+     * Whether to use ripple.
+     */
+    var useRipple: Boolean
+
+    /**
      * initialize.
      */
     fun init(attrIds: ShapeViewAttrIds)
@@ -104,7 +109,7 @@ interface ShapeViewDelegate {
     /**
      * Returns the foreground to use in the ShapeView.
      */
-    fun createForeground(mask: Drawable): RippleDrawable?
+    fun createForeground(): RippleDrawable?
 
     /**
      * Returns the radius.
