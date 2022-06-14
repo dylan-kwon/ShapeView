@@ -8,6 +8,7 @@ import android.graphics.RectF
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.RippleDrawable
+import android.os.Build
 import android.util.AttributeSet
 import android.view.View
 import androidx.annotation.AttrRes
@@ -240,7 +241,10 @@ open class ShapeViewDelegateImpl(
             return
         }
         view.background = createBackground()
-        view.foreground = createForeground(view.background)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            view.foreground = createForeground(view.background)
+        }
     }
 
     /**
