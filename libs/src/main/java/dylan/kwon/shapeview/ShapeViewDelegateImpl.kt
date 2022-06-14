@@ -10,11 +10,10 @@ import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.RippleDrawable
 import android.os.Build
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.View
 import androidx.annotation.AttrRes
 import androidx.annotation.StyleRes
-import androidx.core.content.res.use
-import com.google.android.material.color.MaterialColors
 
 open class ShapeViewDelegateImpl(
 
@@ -168,17 +167,29 @@ open class ShapeViewDelegateImpl(
             if (attrIds.rippleColor > -1) {
                 rippleColor = it.getColorStateList(
                     attrIds.rippleColor,
-                ) ?: ColorStateList(
-                    arrayOf(
-                        intArrayOf()
-                    ),
-                    intArrayOf(
-                        MaterialColors.getColor(
-                            view,
-                            com.google.android.material.R.attr.colorControlHighlight
-                        )
-                    )
                 )
+                if (rippleColor == null) {
+                    try {
+                        val typedValue = TypedValue()
+                        val isFindColor = view.context.theme.resolveAttribute(
+                            androidx.databinding.library.baseAdapters.R.attr.colorControlHighlight,
+                            typedValue,
+                            true
+                        )
+                        if (isFindColor) {
+                            rippleColor = ColorStateList(
+                                arrayOf(
+                                    intArrayOf()
+                                ),
+                                intArrayOf(
+                                    typedValue.data
+                                )
+                            )
+                        }
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                }
             }
             strokeWidth = it.getDimension(
                 attrIds.strokeWidth, 0f
