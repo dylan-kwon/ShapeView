@@ -54,6 +54,7 @@ dependencies {
 
     app:cornerRadius="8dp"
 
+    app:useRipple="@color/red"
     app:rippleColor="@color/red"
     
     app:useClip="true" />
