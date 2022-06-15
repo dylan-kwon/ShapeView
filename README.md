@@ -27,7 +27,7 @@ dependencies {
 ```
 
 ### Provide components
-1. ShapeContainer
+1. ShapeFrameLayout
 2. ShapeTextView
 3. ShapeButton
 4. ShapeToggleButton
@@ -35,11 +35,13 @@ dependencies {
 6. ShapeCheckBox
 7. ShapeImageView
 8. ShapeImageButton
-8. ShapeEditText
+9. ShapeEditText
+10. ShapeLinearLayout
+11. ShapeConstraintLayout
 
 ### Attributes
 ```xml
-<dylan.kwon.shapeview.component.ShapeContainer
+<dylan.kwon.shapeview.component.ShapeFrameLayout
     android:layout_width="100dp"
     android:layout_height="100dp"
 

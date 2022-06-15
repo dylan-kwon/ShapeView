@@ -19,7 +19,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:useClip="true" />
 
-        <dylan.kwon.shapeview.component.ShapeContainer
+        <dylan.kwon.shapeview.component.ShapeFrameLayout
             android:id="@+id/first"
             android:layout_width="0dp"
             android:layout_height="0dp"
