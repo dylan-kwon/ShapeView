@@ -66,8 +66,7 @@ dependencies {
     app:shadowInset="false"
     app:shadowSpread="2dp"
     app:shadow_x_offset="0dp"
-    app:shadow_y_offset="0dp"
-/>
+    app:shadow_y_offset="0dp" />
 
 ```
 
