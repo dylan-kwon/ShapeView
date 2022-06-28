@@ -11,9 +11,9 @@ open class ShapeEditText @JvmOverloads constructor(
 
     context: Context,
     attrs: AttributeSet? = null,
-    @AttrRes defStyleAttr: Int = android.R.attr.editTextStyle,
+    @AttrRes defStyleAttr: Int = android.R.attr.editTextStyle
 
-    ) : AppCompatEditText(context, attrs, defStyleAttr), ShapeView {
+) : AppCompatEditText(context, attrs, defStyleAttr), ShapeView {
 
     /**
      * ShapeView Delegate.

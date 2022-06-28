@@ -11,9 +11,9 @@ open class ShapeButton @JvmOverloads constructor(
 
     context: Context,
     attrs: AttributeSet? = null,
-    @AttrRes defStyleAttr: Int = android.R.attr.buttonStyle,
+    @AttrRes defStyleAttr: Int = 0
 
-    ) : AppCompatButton(context, attrs, defStyleAttr), ShapeView {
+) : AppCompatButton(context, attrs, defStyleAttr), ShapeView {
 
     /**
      * ShapeView Delegate.
@@ -44,8 +44,6 @@ open class ShapeButton @JvmOverloads constructor(
                 useRipple = R.styleable.ShapeButton_useRipple,
             )
         )
-        stateListAnimator = null
-
     }
 
     /**

@@ -11,9 +11,9 @@ open class ShapeToggleButton @JvmOverloads constructor(
 
     context: Context,
     attrs: AttributeSet? = null,
-    @AttrRes defStyleAttr: Int = android.R.attr.buttonStyleToggle,
+    @AttrRes defStyleAttr: Int = android.R.attr.buttonStyleToggle
 
-    ) : AppCompatToggleButton(context, attrs, defStyleAttr), ShapeView {
+) : AppCompatToggleButton(context, attrs, defStyleAttr), ShapeView {
 
     /**
      * ShapeView Delegate.

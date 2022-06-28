@@ -11,9 +11,9 @@ open class ShapeRadioButton @JvmOverloads constructor(
 
     context: Context,
     attrs: AttributeSet? = null,
-    @AttrRes defStyleAttr: Int = android.R.attr.radioButtonStyle,
+    @AttrRes defStyleAttr: Int = android.R.attr.radioButtonStyle
 
-    ) : AppCompatCheckBox(context, attrs, defStyleAttr), ShapeView {
+) : AppCompatCheckBox(context, attrs, defStyleAttr), ShapeView {
 
     /**
      * ShapeView Delegate.

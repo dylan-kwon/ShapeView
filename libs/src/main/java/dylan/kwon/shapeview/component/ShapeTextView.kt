@@ -11,9 +11,9 @@ open class ShapeTextView @JvmOverloads constructor(
 
     context: Context,
     attrs: AttributeSet? = null,
-    @AttrRes defStyleAttr: Int = android.R.attr.textViewStyle,
+    @AttrRes defStyleAttr: Int = android.R.attr.textViewStyle
 
-    ) : AppCompatTextView(context, attrs, defStyleAttr), ShapeView {
+) : AppCompatTextView(context, attrs, defStyleAttr), ShapeView {
 
     /**
      * ShapeView Delegate.

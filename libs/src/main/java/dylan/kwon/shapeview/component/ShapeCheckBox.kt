@@ -11,9 +11,9 @@ open class ShapeCheckBox @JvmOverloads constructor(
 
     context: Context,
     attrs: AttributeSet? = null,
-    @AttrRes defStyleAttr: Int = android.R.attr.checkboxStyle,
+    @AttrRes defStyleAttr: Int = android.R.attr.checkboxStyle
 
-    ) : AppCompatCheckBox(context, attrs, defStyleAttr), ShapeView {
+) : AppCompatCheckBox(context, attrs, defStyleAttr), ShapeView {
 
     /**
      * ShapeView Delegate.
