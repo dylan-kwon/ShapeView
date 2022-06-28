@@ -4,9 +4,7 @@
 **ShapeView** is a view or layout that allows you to use the ShapeDrawable property immediately in the layout xml without creating a separate ShapeDrawable, and also supports CSS style shadow effects.
 
 ## Preview
-<p>
-	<image src = "/sample/images/sample.gif" width = 401 height = 849)/>
-</p>
+<img src="./sample/images/sample.png" width="50%">
 
 ## Install
 ### Project: build.gradle
