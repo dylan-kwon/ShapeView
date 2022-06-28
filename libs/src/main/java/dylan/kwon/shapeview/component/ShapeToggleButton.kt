@@ -75,7 +75,6 @@ open class ShapeToggleButton @JvmOverloads constructor(
                 bottomRightShadowRadius = R.styleable.ShapeFrameLayout_bottomRightRadius,
             )
         )
-        stateListAnimator = null
     }
 
     override fun onAttachedToWindow() {
