@@ -1,7 +1,7 @@
 # ShapeView
 [![](https://jitpack.io/v/dylan-kwon/ShapeView.svg)](https://jitpack.io/#dylan-kwon/ShapeView)
 
-**ShapeView** is a view or layout that allows you to use ShapeDrawable attributes immediately in layout xml without creating a separate ShapeDrawable.
+**ShapeView** is a view or layout that allows you to use the ShapeDrawable property immediately in the layout xml without creating a separate ShapeDrawable, and also supports CSS style shadow effects.
 
 ## Preview
 <p>
@@ -59,7 +59,16 @@ dependencies {
     app:useRipple="@color/red"
     app:rippleColor="@color/red"
     
-    app:useClip="true" />
+    app:useClip="true"
+
+    app:shadowBlur="10dp"
+    app:shadowColor="@color/shadow"
+    app:shadowInset="false"
+    app:shadowSpread="2dp"
+    app:shadow_x_offset="0dp"
+    app:shadow_y_offset="0dp"
+/>
+
 ```
 
 | name  | description  |
@@ -73,4 +82,10 @@ dependencies {
 | app:rippleColor  | Container ripple color.  |
 | app:useRipple  | Whether to use ripple.  |
 | app:useClip  | Whether to cut corner radius.  |
+| app:shadowBlur  | Shadow blur.  |
+| app:shadowColor  | Shadow color.  |
+| app:shadowInset  | Shadow inset.  |
+| app:shadowSpread  | Shadow spread.  |
+| app:shadow_x_offset  | Shadow x offset.  |
+| app:shadow_y_offset  | Shadow y offset.  |
 
