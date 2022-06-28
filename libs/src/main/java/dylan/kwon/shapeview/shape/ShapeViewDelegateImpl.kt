@@ -1,4 +1,4 @@
-package dylan.kwon.shapeview
+package dylan.kwon.shapeview.shape
 
 import android.content.res.ColorStateList
 import android.graphics.Canvas
@@ -22,11 +22,6 @@ open class ShapeViewDelegateImpl(
     @StyleRes val defStyleRes: Int = 0
 
 ) : ShapeViewDelegate {
-
-    /**
-     * initialize state.
-     */
-    override var isInitialized: Boolean = false
 
     /**
      * Background color.
@@ -143,11 +138,11 @@ open class ShapeViewDelegateImpl(
         view.context.obtainStyledAttributes(
             this.attrs, attrIds.attrs, defStyleAttr, defStyleRes
         ).use {
-            val cornerEnabledRadius = it.getDimension(
+            val cornerRadius = it.getDimension(
                 attrIds.cornerRadius, -1f
             )
-            if (cornerEnabledRadius > -1) {
-                setCornerRadius(cornerEnabledRadius)
+            if (cornerRadius > -1) {
+                setCornerRadius(cornerRadius)
             } else {
                 topLeftRadius = it.getDimension(
                     attrIds.topLeftRadius, 0f
@@ -219,10 +214,6 @@ open class ShapeViewDelegateImpl(
                 attrIds.useClip, false
             )
         }
-        apply {
-            isInitialized = true
-            invalidateShape()
-        }
     }
 
     /**
@@ -260,9 +251,6 @@ open class ShapeViewDelegateImpl(
      * Create and apply the background and foreground to be used in ShapeView.
      */
     override fun invalidateShape() {
-        if (!isInitialized) {
-            return
-        }
         view.background = createBackground()
 
         if (useRipple) {

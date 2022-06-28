@@ -6,7 +6,15 @@ import android.util.AttributeSet
 import androidx.annotation.AttrRes
 import androidx.annotation.StyleRes
 import androidx.constraintlayout.widget.ConstraintLayout
-import dylan.kwon.shapeview.*
+import dylan.kwon.shapeview.R
+import dylan.kwon.shapeview.shadow.ShadowView
+import dylan.kwon.shapeview.shadow.ShadowViewAttrIds
+import dylan.kwon.shapeview.shadow.ShadowViewDelegate
+import dylan.kwon.shapeview.shadow.ShadowViewDelegateImpl
+import dylan.kwon.shapeview.shape.ShapeView
+import dylan.kwon.shapeview.shape.ShapeViewAttrIds
+import dylan.kwon.shapeview.shape.ShapeViewDelegate
+import dylan.kwon.shapeview.shape.ShapeViewDelegateImpl
 
 open class ShapeConstraintLayout @JvmOverloads constructor(
 
@@ -15,14 +23,24 @@ open class ShapeConstraintLayout @JvmOverloads constructor(
     @AttrRes defStyleAttr: Int = 0,
     @StyleRes defStyleRes: Int = 0
 
-) : ConstraintLayout(context, attrs, defStyleAttr, defStyleRes), ShapeView {
+) : ConstraintLayout(context, attrs, defStyleAttr, defStyleRes), ShapeView, ShadowView {
 
-    final override val delegate: ShapeViewDelegate by lazy {
+    /**
+     * ShapeView Delegate.
+     */
+    final override val shapeDelegate: ShapeViewDelegate by lazy {
         ShapeViewDelegateImpl(this, attrs, defStyleAttr, defStyleRes)
     }
 
+    /**
+     * ShadowView Delegate.
+     */
+    final override val shadowDelegate: ShadowViewDelegate by lazy {
+        ShadowViewDelegateImpl(this, attrs, defStyleAttr, defStyleRes)
+    }
+
     init {
-        delegate.init(
+        shapeDelegate.init(
             ShapeViewAttrIds(
                 attrs = R.styleable.ShapeConstraintLayout,
                 cornerRadius = R.styleable.ShapeConstraintLayout_cornerRadius,
@@ -40,10 +58,42 @@ open class ShapeConstraintLayout @JvmOverloads constructor(
                 useRipple = R.styleable.ShapeConstraintLayout_useRipple,
             )
         )
+        shadowDelegate.init(
+            ShadowViewAttrIds(
+                attrs = R.styleable.ShapeFrameLayout,
+                shadowXOffset = R.styleable.ShapeFrameLayout_shadow_x_offset,
+                shadowYOffset = R.styleable.ShapeFrameLayout_shadow_y_offset,
+                shadowColor = R.styleable.ShapeFrameLayout_shadowColor,
+                shadowBlur = R.styleable.ShapeFrameLayout_shadowBlur,
+                shadowSpread = R.styleable.ShapeFrameLayout_shadowSpread,
+                shadowInset = R.styleable.ShapeFrameLayout_shadowInset,
+                shadowRadius = R.styleable.ShapeFrameLayout_cornerRadius,
+                topLeftShadowRadius = R.styleable.ShapeFrameLayout_topLeftRadius,
+                topRightShadowRadius = R.styleable.ShapeFrameLayout_topRightRadius,
+                bottomLeftShadowRadius = R.styleable.ShapeFrameLayout_bottomLeftRadius,
+                bottomRightShadowRadius = R.styleable.ShapeFrameLayout_bottomRightRadius,
+            )
+        )
+    }
+
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        shadowDelegate.onAttachedToWindow()
+    }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        shadowDelegate.onDetachedFromWindow()
     }
 
     override fun draw(canvas: Canvas?) {
-        delegate.draw(canvas)
+        shadowDelegate.draw(canvas)
+        shapeDelegate.draw(canvas)
         super.draw(canvas)
+    }
+
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        super.onSizeChanged(w, h, oldw, oldh)
+        shadowDelegate.onSizeChanged(w, h, oldw, oldh)
     }
 }

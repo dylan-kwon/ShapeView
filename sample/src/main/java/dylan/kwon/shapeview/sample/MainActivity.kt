@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
         binding.second.setOnClickListener {
             Toast.makeText(this, "Click!!", Toast.LENGTH_SHORT).show()
         }
-
     }
 
 

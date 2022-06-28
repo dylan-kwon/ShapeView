@@ -1,8 +1,7 @@
-package dylan.kwon.shapeview
+package dylan.kwon.shapeview.shape
 
 import android.content.res.ColorStateList
 import android.graphics.Canvas
-import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.RippleDrawable
 
@@ -10,11 +9,6 @@ import android.graphics.drawable.RippleDrawable
  * ShapeView Delegate.
  */
 interface ShapeViewDelegate {
-
-    /**
-     * initialize state.
-     */
-    var isInitialized: Boolean
 
     /**
      * Background color.

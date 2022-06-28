@@ -1,4 +1,4 @@
-package dylan.kwon.shapeview
+package dylan.kwon.shapeview.shape
 
 import androidx.annotation.StyleableRes
 

@@ -1,4 +1,4 @@
-package dylan.kwon.shapeview
+package dylan.kwon.shapeview.shape
 
 import android.content.res.ColorStateList
 
@@ -10,89 +10,89 @@ interface ShapeView {
     /**
      * ShapeView Delegate.
      */
-    val delegate: ShapeViewDelegate
+    val shapeDelegate: ShapeViewDelegate
 
     /**
      * change shape color.
      */
     fun setShapeColor(color: ColorStateList?) {
-        delegate.shapeColor = color
+        shapeDelegate.shapeColor = color
     }
 
     /**
      * change ripple color.
      */
     fun setRippleColor(color: ColorStateList?) {
-        delegate.rippleColor = color
+        shapeDelegate.rippleColor = color
     }
 
     /**
      * change shape color.
      */
     fun setStrokeWidth(width: Float) {
-        delegate.strokeWidth = width
+        shapeDelegate.strokeWidth = width
     }
 
     /**
      * change stroke dash width.
      */
     fun setStrokeDashWidth(width: Float) {
-        delegate.strokeDashWidth = width
+        shapeDelegate.strokeDashWidth = width
     }
 
     /**
      * change stroke dash gap.
      */
     fun setStrokeDashGap(gap: Float) {
-        delegate.strokeDashGap = gap
+        shapeDelegate.strokeDashGap = gap
     }
 
     /**
      * change stroke color.
      */
     fun setStrokeColor(color: ColorStateList?) {
-        delegate.strokeColor = color
+        shapeDelegate.strokeColor = color
     }
 
     /**
      * change all radius.
      */
     fun setCornerRadius(radius: Float) {
-        delegate.setCornerRadius(radius)
+        shapeDelegate.setCornerRadius(radius)
     }
 
     /**
      * change top-left radius.
      */
     fun setTopLeftRadius(radius: Float) {
-        delegate.topLeftRadius = radius
+        shapeDelegate.topLeftRadius = radius
     }
 
     /**
      * change top-right radius.
      */
     fun setTopRightRadius(radius: Float) {
-        delegate.topRightRadius = radius
+        shapeDelegate.topRightRadius = radius
     }
 
     /**
      * change bottom-left radius.
      */
     fun setBottomLeftRadius(radius: Float) {
-        delegate.bottomLeftRadius = radius
+        shapeDelegate.bottomLeftRadius = radius
     }
 
     /**
      * change bottom-right radius.
      */
     fun setBottomRightRadius(radius: Float) {
-        delegate.bottomRightRadius = radius
+        shapeDelegate.bottomRightRadius = radius
     }
 
     /**
      * change use clip.
      */
     fun setUseClip(useClip: Boolean) {
-        delegate.useClip = useClip
+        shapeDelegate.useClip = useClip
     }
 }

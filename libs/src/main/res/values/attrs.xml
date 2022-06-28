@@ -24,4 +24,12 @@
     <!-- Clip -->
     <attr name="useClip" format="boolean" />
 
+    <!-- Shadow -->
+    <attr name="shadow_x_offset" format="dimension" />
+    <attr name="shadow_y_offset" format="dimension" />
+    <attr name="shadowBlur" format="dimension" />
+    <attr name="shadowSpread" format="dimension" />
+    <attr name="shadowColor" format="color" />
+    <attr name="shadowInset" format="boolean" />
+
 </resources>

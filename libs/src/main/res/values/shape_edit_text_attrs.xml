@@ -21,6 +21,14 @@
         <!-- Clip -->
         <attr name="useClip" />
 
+        <!-- Shadow -->
+        <attr name="shadow_x_offset" />
+        <attr name="shadow_y_offset" />
+        <attr name="shadowBlur" />
+        <attr name="shadowSpread" />
+        <attr name="shadowColor" />
+        <attr name="shadowInset" />
+
     </declare-styleable>
 
 </resources>

@@ -1,4 +1,4 @@
-package dylan.kwon.shapeview
+package dylan.kwon.shapeview.shape
 
 import androidx.databinding.BindingMethod
 import androidx.databinding.BindingMethods
