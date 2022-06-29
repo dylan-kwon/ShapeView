@@ -205,16 +205,11 @@ open class ShadowViewDelegateImpl(
     }
 
     override fun onAttachedToWindow() {
-        view.tellParentNotChip()
+        (view.parent as? ViewGroup)?.clipChildren = false
     }
 
     override fun onDetachedFromWindow() {
         shadowDrawable.release()
-    }
-
-    private fun View.tellParentNotChip() {
-        (parent as? ViewGroup)?.clipChildren = false
-        (parent as? ViewGroup)?.tellParentNotChip()
     }
 
     override fun draw(canvas: Canvas?) {
@@ -236,21 +231,6 @@ open class ShadowViewDelegateImpl(
             shadowDrawable.draw(canvas)
         } catch (e: Exception) {
             e.printStackTrace()
-        }
-    }
-
-    private fun clipRadius(canvas: Canvas) {
-        if (shadowRadius > 0
-            || topLeftShadowRadius > 0
-            || topRightShadowRadius > 0
-            || bottomLeftShadowRadius > 0
-            || bottomRightShadowRadius > 0
-        ) {
-            try {
-                canvas.drawPath(clipPath, clipPaint)
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
         }
     }
 
