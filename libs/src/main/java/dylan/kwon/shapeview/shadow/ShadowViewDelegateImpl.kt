@@ -76,8 +76,6 @@ open class ShadowViewDelegateImpl(
             invalidate()
         }
 
-    protected val clipPath: Path = Path()
-
     private val shadowPath = Path()
 
     private val shadowDrawable: ShadowDrawable =
@@ -145,18 +143,6 @@ open class ShadowViewDelegateImpl(
         bottomLeftShadowRadius = bottomLeft.absoluteValue
         bottomRightShadowRadius = bottomRight.absoluteValue
 
-        clipPath.apply {
-            reset()
-            fillType = Path.FillType.INVERSE_WINDING
-            addRoundRect(
-                topLeftShadowRadius,
-                topRightShadowRadius,
-                bottomLeftShadowRadius,
-                bottomRightShadowRadius,
-                view.width.toFloat(),
-                view.height.toFloat()
-            )
-        }
         shadowPathOffsetX = 0f
         shadowPathOffsetY = 0f
 
