@@ -1,6 +1,8 @@
 package dylan.kwon.shapeview.shadow
 
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Path
 import android.os.Build
 import android.util.AttributeSet
 import android.view.View
@@ -77,12 +79,6 @@ open class ShadowViewDelegateImpl(
     protected val clipPath: Path = Path()
 
     private val shadowPath = Path()
-
-    protected val clipPaint: Paint = Paint().apply {
-        isDither = true
-        isAntiAlias = true
-        xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
-    }
 
     private val shadowDrawable: ShadowDrawable =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
@@ -205,7 +201,9 @@ open class ShadowViewDelegateImpl(
     }
 
     override fun onAttachedToWindow() {
-        (view.parent as? ViewGroup)?.clipChildren = false
+        if (shadowBlur > 0f) {
+            (view.parent as? ViewGroup)?.clipChildren = false
+        }
     }
 
     override fun onDetachedFromWindow() {
