@@ -94,6 +94,7 @@
             app:gradientX="0.5"
             app:gradientY="0.5"
             app:layout_constraintEnd_toEndOf="@id/image_container"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/image_container"
             app:layout_constraintTop_toBottomOf="@id/third"
             app:shadowBlur="10dp"

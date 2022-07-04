@@ -152,7 +152,7 @@ open class ShapeViewDelegateImpl(
     /**
      * Gradient center color.
      */
-    override var gradientCenterColor: Int = Color.TRANSPARENT
+    override var gradientCenterColor: Int = -1
         set(value) {
             field = value
             invalidateShape()
@@ -292,7 +292,7 @@ open class ShapeViewDelegateImpl(
                 attrIds.gradientStartColor, Color.TRANSPARENT
             )
             gradientCenterColor = it.getColor(
-                attrIds.gradientCenterColor, Color.TRANSPARENT
+                attrIds.gradientCenterColor, -1
             )
             gradientEndColor = it.getColor(
                 attrIds.gradientEndColor, Color.TRANSPARENT
@@ -368,11 +368,13 @@ open class ShapeViewDelegateImpl(
             strokeDashGap
         )
         if (gradientType > -1) {
-            it.colors = intArrayOf(
-                gradientStartColor,
-                gradientCenterColor,
-                gradientEndColor,
-            )
+            it.colors = mutableListOf<Int>().apply {
+                this += gradientStartColor
+                if (gradientCenterColor != -1) {
+                    this += gradientCenterColor
+                }
+                this += gradientEndColor
+            }.toIntArray()
             it.gradientType = gradientType
             it.gradientRadius = gradientRadius
             it.orientation = gradientOrientationOf(gradientOrientation)
