@@ -56,6 +56,14 @@ open class ShapeConstraintLayout @JvmOverloads constructor(
                 strokeColor = R.styleable.ShapeConstraintLayout_strokeColor,
                 useClip = R.styleable.ShapeConstraintLayout_useClip,
                 useRipple = R.styleable.ShapeConstraintLayout_useRipple,
+                gradientType = R.styleable.ShapeConstraintLayout_gradientType,
+                gradientStartColor = R.styleable.ShapeConstraintLayout_gradientStartColor,
+                gradientCenterColor = R.styleable.ShapeConstraintLayout_gradientCenterColor,
+                gradientEndColor = R.styleable.ShapeConstraintLayout_gradientEndColor,
+                gradientRadius = R.styleable.ShapeConstraintLayout_gradientRadius,
+                gradientX = R.styleable.ShapeConstraintLayout_gradientX,
+                gradientY = R.styleable.ShapeConstraintLayout_gradientY,
+                gradientOrientation = R.styleable.ShapeConstraintLayout_gradientOrientation
             )
         )
         shadowDelegate.init(

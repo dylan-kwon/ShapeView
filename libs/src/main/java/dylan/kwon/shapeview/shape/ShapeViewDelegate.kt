@@ -71,6 +71,46 @@ interface ShapeViewDelegate {
     var useRipple: Boolean
 
     /**
+     * Gradient type.
+     */
+    var gradientType: Int
+
+    /**
+     * Gradient start color.
+     */
+    var gradientStartColor: Int
+
+    /**
+     * Gradient center color.
+     */
+    var gradientCenterColor: Int
+
+    /**
+     * Gradient end color.
+     */
+    var gradientEndColor: Int
+
+    /**
+     * Gradient radius.
+     */
+    var gradientRadius: Float
+
+    /**
+     * Gradient x.
+     */
+    var gradientX: Float
+
+    /**
+     * Gradient y.
+     */
+    var gradientY: Float
+
+    /**
+     * Gradient orientation.
+     */
+    var gradientOrientation: Int
+
+    /**
      * initialize.
      */
     fun init(attrIds: ShapeViewAttrIds)

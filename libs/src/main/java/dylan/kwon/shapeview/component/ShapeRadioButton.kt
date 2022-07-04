@@ -57,6 +57,14 @@ open class ShapeRadioButton @JvmOverloads constructor(
                 strokeColor = R.styleable.ShapeRadioButton_strokeColor,
                 useClip = R.styleable.ShapeRadioButton_useClip,
                 useRipple = R.styleable.ShapeRadioButton_useRipple,
+                gradientType = R.styleable.ShapeRadioButton_gradientType,
+                gradientStartColor = R.styleable.ShapeRadioButton_gradientStartColor,
+                gradientCenterColor = R.styleable.ShapeRadioButton_gradientCenterColor,
+                gradientEndColor = R.styleable.ShapeRadioButton_gradientEndColor,
+                gradientRadius = R.styleable.ShapeRadioButton_gradientRadius,
+                gradientX = R.styleable.ShapeRadioButton_gradientX,
+                gradientY = R.styleable.ShapeRadioButton_gradientY,
+                gradientOrientation = R.styleable.ShapeRadioButton_gradientOrientation
             )
         )
         shadowDelegate.init(

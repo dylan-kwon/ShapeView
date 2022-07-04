@@ -57,6 +57,14 @@ open class ShapeCheckBox @JvmOverloads constructor(
                 strokeColor = R.styleable.ShapeCheckBox_strokeColor,
                 useClip = R.styleable.ShapeCheckBox_useClip,
                 useRipple = R.styleable.ShapeCheckBox_useRipple,
+                gradientType = R.styleable.ShapeCheckBox_gradientType,
+                gradientStartColor = R.styleable.ShapeCheckBox_gradientStartColor,
+                gradientCenterColor = R.styleable.ShapeCheckBox_gradientCenterColor,
+                gradientEndColor = R.styleable.ShapeCheckBox_gradientEndColor,
+                gradientRadius = R.styleable.ShapeCheckBox_gradientRadius,
+                gradientX = R.styleable.ShapeCheckBox_gradientX,
+                gradientY = R.styleable.ShapeCheckBox_gradientY,
+                gradientOrientation = R.styleable.ShapeCheckBox_gradientOrientation
             )
         )
         shadowDelegate.init(

@@ -57,6 +57,14 @@ open class ShapeToggleButton @JvmOverloads constructor(
                 strokeColor = R.styleable.ShapeToggleButton_strokeColor,
                 useClip = R.styleable.ShapeToggleButton_useClip,
                 useRipple = R.styleable.ShapeToggleButton_useRipple,
+                gradientType = R.styleable.ShapeToggleButton_gradientType,
+                gradientStartColor = R.styleable.ShapeToggleButton_gradientStartColor,
+                gradientCenterColor = R.styleable.ShapeToggleButton_gradientCenterColor,
+                gradientEndColor = R.styleable.ShapeToggleButton_gradientEndColor,
+                gradientRadius = R.styleable.ShapeToggleButton_gradientRadius,
+                gradientX = R.styleable.ShapeToggleButton_gradientX,
+                gradientY = R.styleable.ShapeToggleButton_gradientY,
+                gradientOrientation = R.styleable.ShapeToggleButton_gradientOrientation
             )
         )
         shadowDelegate.init(

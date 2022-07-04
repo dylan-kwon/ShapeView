@@ -132,6 +132,78 @@ open class ShapeViewDelegateImpl(
         }
 
     /**
+     * Gradient type.
+     */
+    override var gradientType: Int = -1
+        set(value) {
+            field = value
+            invalidateShape()
+        }
+
+    /**
+     * Gradient start color.
+     */
+    override var gradientStartColor: Int = Color.TRANSPARENT
+        set(value) {
+            field = value
+            invalidateShape()
+        }
+
+    /**
+     * Gradient center color.
+     */
+    override var gradientCenterColor: Int = Color.TRANSPARENT
+        set(value) {
+            field = value
+            invalidateShape()
+        }
+
+    /**
+     * Gradient end color.
+     */
+    override var gradientEndColor: Int = Color.TRANSPARENT
+        set(value) {
+            field = value
+            invalidateShape()
+        }
+
+    /**
+     * Gradient radius.
+     */
+    override var gradientRadius: Float = 0.0f
+        set(value) {
+            field = value
+            invalidateShape()
+        }
+
+    /**
+     * Gradient x.
+     */
+    override var gradientX: Float = 0.5f
+        set(value) {
+            field = value
+            invalidateShape()
+        }
+
+    /**
+     * Gradient y.
+     */
+    override var gradientY: Float = 0.5f
+        set(value) {
+            field = value
+            invalidateShape()
+        }
+
+    /**
+     * Gradient orientation.
+     */
+    override var gradientOrientation: Int = GradientDrawable.Orientation.LEFT_RIGHT.toInt()
+        set(value) {
+            field = value
+            invalidateShape()
+        }
+
+    /**
      * initialize.
      */
     override fun init(attrIds: ShapeViewAttrIds) {
@@ -213,6 +285,30 @@ open class ShapeViewDelegateImpl(
             useClip = it.getBoolean(
                 attrIds.useClip, false
             )
+            gradientType = it.getInt(
+                attrIds.gradientType, -1
+            )
+            gradientStartColor = it.getColor(
+                attrIds.gradientStartColor, Color.TRANSPARENT
+            )
+            gradientCenterColor = it.getColor(
+                attrIds.gradientCenterColor, Color.TRANSPARENT
+            )
+            gradientEndColor = it.getColor(
+                attrIds.gradientEndColor, Color.TRANSPARENT
+            )
+            gradientRadius = it.getDimension(
+                attrIds.gradientRadius, 0.0f
+            )
+            gradientX = it.getFloat(
+                attrIds.gradientX, 0.5f
+            )
+            gradientY = it.getFloat(
+                attrIds.gradientY, 0.5f
+            )
+            gradientOrientation = it.getInt(
+                attrIds.gradientOrientation, GradientOrientation.LEFT_RIGHT
+            )
         }
     }
 
@@ -261,16 +357,27 @@ open class ShapeViewDelegateImpl(
     /**
      * Returns the background to use in the ShapeView.
      */
-    override fun createBackground(): GradientDrawable = GradientDrawable().apply {
-        this.shape = GradientDrawable.RECTANGLE
-        this.color = shapeColor
-        this.cornerRadii = createRadius()
-        this.setStroke(
+    override fun createBackground(): GradientDrawable = GradientDrawable().also {
+        it.shape = GradientDrawable.RECTANGLE
+        it.color = shapeColor
+        it.cornerRadii = createRadius()
+        it.setStroke(
             strokeWidth.toInt(),
             strokeColor,
             strokeDashWidth,
             strokeDashGap
         )
+        if (gradientType > -1) {
+            it.colors = intArrayOf(
+                gradientStartColor,
+                gradientCenterColor,
+                gradientEndColor,
+            )
+            it.gradientType = gradientType
+            it.gradientRadius = gradientRadius
+            it.orientation = gradientOrientationOf(gradientOrientation)
+            it.setGradientCenter(gradientX, gradientY)
+        }
     }
 
     /**

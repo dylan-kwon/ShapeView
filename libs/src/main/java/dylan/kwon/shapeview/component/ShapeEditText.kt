@@ -55,6 +55,14 @@ open class ShapeEditText @JvmOverloads constructor(
                 strokeDashGap = R.styleable.ShapeEditText_strokeDashGap,
                 strokeColor = R.styleable.ShapeEditText_strokeColor,
                 useClip = R.styleable.ShapeEditText_useClip,
+                gradientType = R.styleable.ShapeEditText_gradientType,
+                gradientStartColor = R.styleable.ShapeEditText_gradientStartColor,
+                gradientCenterColor = R.styleable.ShapeEditText_gradientCenterColor,
+                gradientEndColor = R.styleable.ShapeEditText_gradientEndColor,
+                gradientRadius = R.styleable.ShapeEditText_gradientRadius,
+                gradientX = R.styleable.ShapeEditText_gradientX,
+                gradientY = R.styleable.ShapeEditText_gradientY,
+                gradientOrientation = R.styleable.ShapeEditText_gradientOrientation
             )
         )
         shadowDelegate.init(

@@ -1,6 +1,7 @@
 package dylan.kwon.shapeview.shape
 
 import android.content.res.ColorStateList
+import androidx.annotation.ColorInt
 
 /**
  * ShapeView.
@@ -94,5 +95,61 @@ interface ShapeView {
      */
     fun setUseClip(useClip: Boolean) {
         shapeDelegate.useClip = useClip
+    }
+
+    /**
+     * change gradient type.
+     */
+    fun setGradientType(type: Int) {
+        shapeDelegate.gradientType = type
+    }
+
+    /**
+     * change gradient start color.
+     */
+    fun setGradientStartColor(@ColorInt color: Int) {
+        shapeDelegate.gradientStartColor = color
+    }
+
+    /**
+     * change gradient center color.
+     */
+    fun setGradientCenterColor(@ColorInt color: Int) {
+        shapeDelegate.gradientCenterColor = color
+    }
+
+    /**
+     * change gradient end color.
+     */
+    fun setGradientEndColor(@ColorInt color: Int) {
+        shapeDelegate.gradientEndColor = color
+    }
+
+    /**
+     * change gradient radius.
+     */
+    fun setGradientRadius(radius: Float) {
+        shapeDelegate.gradientRadius = radius
+    }
+
+    /**
+     * change gradient x.
+     */
+    fun setGradientX(x: Float) {
+        shapeDelegate.gradientX = x
+    }
+
+    /**
+     * change gradient y.
+     */
+    fun setGradientY(y: Float) {
+        shapeDelegate.gradientY = y
+    }
+
+    /**
+     * change gradient orientation.
+     */
+    fun setGradientOrientation(orientation: Int) {
+        shapeDelegate.gradientOrientation = orientation
     }
 }

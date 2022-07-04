@@ -57,6 +57,14 @@ open class ShapeImageView @JvmOverloads constructor(
                 strokeColor = R.styleable.ShapeImageView_strokeColor,
                 useClip = R.styleable.ShapeImageView_useClip,
                 useRipple = R.styleable.ShapeImageView_useRipple,
+                gradientType = R.styleable.ShapeImageView_gradientType,
+                gradientStartColor = R.styleable.ShapeImageView_gradientStartColor,
+                gradientCenterColor = R.styleable.ShapeImageView_gradientCenterColor,
+                gradientEndColor = R.styleable.ShapeImageView_gradientEndColor,
+                gradientRadius = R.styleable.ShapeImageView_gradientRadius,
+                gradientX = R.styleable.ShapeImageView_gradientX,
+                gradientY = R.styleable.ShapeImageView_gradientY,
+                gradientOrientation = R.styleable.ShapeImageView_gradientOrientation
             )
         )
         shadowDelegate.init(

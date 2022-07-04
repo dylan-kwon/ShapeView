@@ -18,6 +18,16 @@
         <attr name="strokeDashGap" />
         <attr name="strokeColor" />
 
+        <!-- Gradient -->
+        <attr name="gradientType" />
+        <attr name="gradientStartColor" />
+        <attr name="gradientCenterColor" />
+        <attr name="gradientEndColor" />
+        <attr name="gradientRadius" />
+        <attr name="gradientX" />
+        <attr name="gradientY" />
+        <attr name="gradientOrientation" />
+
         <!-- Ripple -->
         <attr name="useRipple" />
         <attr name="rippleColor" />

@@ -64,7 +64,16 @@ dependencies {
     app:shadowInset="false"
     app:shadowSpread="2dp"
     app:shadow_x_offset="0dp"
-    app:shadow_y_offset="0dp" />
+    app:shadow_y_offset="0dp"
+
+    app:gradientType="radial"
+    app:gradientOrientation="LEFT_RIGHT"
+    app:gradientStartColor="@color/red"
+    app:gradientCenterColor="@color/blue"
+    app:gradientEndColor="@color/black"
+    app:gradientRadius="100dp"
+    app:gradientX="0.5"
+    app:gradientY="0.5" />
 
 ```
 
@@ -85,4 +94,12 @@ dependencies {
 | app:shadowSpread  | Shadow spread.  |
 | app:shadow_x_offset  | Shadow x offset.  |
 | app:shadow_y_offset  | Shadow y offset.  |
+| app:gradientType  | Gradient type.  |
+| app:gradientOrientation  | Shadow orientation.  |
+| app:gradientStartColor  | Gradient start color.  |
+| app:gradientCenterColor  | Gradient center color. |
+| app:gradientEndColor  | Gradient end color.  |
+| app:gradientRadius  | Gradient radius.  |
+| app:gradientX  | Gradient x position.  |
+| app:gradientY  | Gradient y position.  |
 

@@ -59,6 +59,14 @@ open class ShapeFrameLayout @JvmOverloads constructor(
                 strokeColor = R.styleable.ShapeFrameLayout_strokeColor,
                 useClip = R.styleable.ShapeFrameLayout_useClip,
                 useRipple = R.styleable.ShapeFrameLayout_useRipple,
+                gradientType = R.styleable.ShapeFrameLayout_gradientType,
+                gradientStartColor = R.styleable.ShapeFrameLayout_gradientStartColor,
+                gradientCenterColor = R.styleable.ShapeFrameLayout_gradientCenterColor,
+                gradientEndColor = R.styleable.ShapeFrameLayout_gradientEndColor,
+                gradientRadius = R.styleable.ShapeFrameLayout_gradientRadius,
+                gradientX = R.styleable.ShapeFrameLayout_gradientX,
+                gradientY = R.styleable.ShapeFrameLayout_gradientY,
+                gradientOrientation = R.styleable.ShapeFrameLayout_gradientOrientation
             )
         )
         shadowDelegate.init(

@@ -57,6 +57,14 @@ open class ShapeTextView @JvmOverloads constructor(
                 strokeColor = R.styleable.ShapeTextView_strokeColor,
                 useClip = R.styleable.ShapeTextView_useClip,
                 useRipple = R.styleable.ShapeTextView_useRipple,
+                gradientType = R.styleable.ShapeTextView_gradientType,
+                gradientStartColor = R.styleable.ShapeTextView_gradientStartColor,
+                gradientCenterColor = R.styleable.ShapeTextView_gradientCenterColor,
+                gradientEndColor = R.styleable.ShapeTextView_gradientEndColor,
+                gradientRadius = R.styleable.ShapeTextView_gradientRadius,
+                gradientX = R.styleable.ShapeTextView_gradientX,
+                gradientY = R.styleable.ShapeTextView_gradientY,
+                gradientOrientation = R.styleable.ShapeTextView_gradientOrientation
             )
         )
         shadowDelegate.init(

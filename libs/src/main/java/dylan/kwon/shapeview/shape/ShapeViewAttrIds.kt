@@ -17,7 +17,15 @@ class ShapeViewAttrIds(
     @StyleableRes val strokeDashGap: Int = NONE,
     @StyleableRes val strokeColor: Int = NONE,
     @StyleableRes val useClip: Int = NONE,
-    @StyleableRes val useRipple: Int = NONE
+    @StyleableRes val useRipple: Int = NONE,
+    @StyleableRes val gradientType: Int = NONE,
+    @StyleableRes val gradientStartColor: Int = NONE,
+    @StyleableRes val gradientCenterColor: Int = NONE,
+    @StyleableRes val gradientEndColor: Int = NONE,
+    @StyleableRes val gradientRadius: Int = NONE,
+    @StyleableRes val gradientX: Int = NONE,
+    @StyleableRes val gradientY: Int = NONE,
+    @StyleableRes val gradientOrientation: Int = NONE
 
 ) {
     companion object {

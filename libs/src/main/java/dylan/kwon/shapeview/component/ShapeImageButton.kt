@@ -57,6 +57,14 @@ open class ShapeImageButton @JvmOverloads constructor(
                 strokeColor = R.styleable.ShapeImageButton_strokeColor,
                 useClip = R.styleable.ShapeImageButton_useClip,
                 useRipple = R.styleable.ShapeImageButton_useRipple,
+                gradientType = R.styleable.ShapeImageButton_gradientType,
+                gradientStartColor = R.styleable.ShapeImageButton_gradientStartColor,
+                gradientCenterColor = R.styleable.ShapeImageButton_gradientCenterColor,
+                gradientEndColor = R.styleable.ShapeImageButton_gradientEndColor,
+                gradientRadius = R.styleable.ShapeImageButton_gradientRadius,
+                gradientX = R.styleable.ShapeImageButton_gradientX,
+                gradientY = R.styleable.ShapeImageButton_gradientY,
+                gradientOrientation = R.styleable.ShapeImageButton_gradientOrientation
             )
         )
         shadowDelegate.init(
